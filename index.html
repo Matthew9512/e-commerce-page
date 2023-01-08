@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/dist/styles.css" />
+    <script src="https://kit.fontawesome.com/da392c22d2.js" crossorigin="anonymous"></script>
+    <script type="module" src="controller.js"></script>
+    <title>Shop page</title>
+  </head>
+  <body>
+    <main class="main-container">
+      <!-- sale info -->
+      <article class="sale">
+        <p class="sale__message">Sale ends in:</p>
+        <div class="sale__timer">
+          <p class="sale__days"></p>
+          <p class="sale__hours"></p>
+          <p class="sale__minutes"></p>
+          <p class="sale__seconds"></p>
+        </div>
+      </article>
+      <!-- navbar -->
+      <nav class="navbar">
+        <i class="navbar__logo fa-brands fa-shopware"></i>
+        <input class="navbar__menu-toggle" id="menu-toggle" type="checkbox" />
+        <label class="navbar__menu-button-container" for="menu-toggle">
+          <div class="navbar__menu-button"></div>
+        </label>
+        <!--  -->
+        <ul class="navbar__menu">
+          <li>
+            <a href="#start" class="navbar__link"><button class="navbar__btn">start</button></a>
+          </li>
+          <li>
+            <a href="/trening/trening.html" class="navbar__link"><button class="navbar__btn">trening</button></a>
+          </li>
+          <li>
+            <a href="meal/meal.html" class="navbar__link"><button class="navbar__btn">meal</button></a>
+          </li>
+          <li>
+            <a href="recipe/recipe.html" class="navbar__link"><button class="navbar__btn navbar__btn-login">recipe</button></a>
+          </li>
+        </ul>
+      </nav>
+    </main>
+  </body>
+</html>

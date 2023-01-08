@@ -1,0 +1,99 @@
+{
+  "menu": [
+    {
+      "id": 1,
+      "category": "lunch",
+      "title": "burger",
+      "price": 15,
+      "img": "https://obiaddlataty.pl/wp-content/uploads/2020/02/domowa_pizza-scaled.jpg",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, pariatur!"
+    },
+    {
+      "id": 2,
+      "category": "lunch",
+      "title": "burger",
+      "price": 15,
+      "img": "https://images.pexels.com/photos/1199957/pexels-photo-1199957.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, pariatur!"
+    },
+    {
+      "id": 3,
+      "title": "lunch",
+      "price": 15,
+      "img": "https://images.pexels.com/photos/803963/pexels-photo-803963.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, pariatur!"
+    },
+    {
+      "id": 4,
+      "title": "buttermilk pancakes",
+      "category": "breakfast",
+      "price": 15.99,
+      "img": "./images/item-1.jpeg",
+      "description": "I'm baby woke mlkshk wolf bitters live-edge blue bottle, hammock freegan copper mug whatever cold-pressed"
+    },
+    {
+      "id": 5,
+      "title": "diner double",
+      "category": "lunch",
+      "price": 13.99,
+      "img": "./images/item-2.jpeg",
+      "description": "vaporware iPhone mumblecore selvage raw denim slow-carb leggings gochujang helvetica man braid jianbing. Marfa thundercats"
+    },
+    {
+      "id": 6,
+      "title": "godzilla milkshake",
+      "category": "shakes",
+      "price": 6.99,
+      "img": "./images/item-3.jpeg",
+      "description": "ombucha chillwave fanny pack 3 wolf moon street art photo booth before they sold out organic viral."
+    },
+    {
+      "id": 7,
+      "title": "country delight",
+      "category": "breakfast",
+      "price": 20.99,
+      "img": "./images/item-4.jpeg",
+      "description": "Shabby chic keffiyeh neutra snackwave pork belly shoreditch. Prism austin mlkshk truffaut"
+    },
+    {
+      "id": 8,
+      "title": "egg attack",
+      "category": "lunch",
+      "price": 22.99,
+      "img": "./images/item-5.jpeg",
+      "description": "franzen vegan pabst bicycle rights kickstarter pinterest meditation farm-to-table 90's pop-up"
+    },
+    {
+      "id": 9,
+      "title": "oreo dream",
+      "category": "shakes",
+      "price": 18.99,
+      "img": "./images/item-6.jpeg",
+      "description": "Portland chicharrones ethical edison bulb, palo santo craft beer chia heirloom iPhone everyday"
+    },
+    {
+      "id": 10,
+      "title": "bacon overflow",
+      "category": "breakfast",
+      "price": 8.99,
+      "img": "./images/item-7.jpeg",
+      "description": "carry jianbing normcore freegan. Viral single-origin coffee live-edge, pork belly cloud bread iceland put a bird"
+    },
+    {
+      "id": 11,
+      "title": "american classic",
+      "category": "lunch",
+      "price": 12.99,
+      "img": "./images/item-8.jpeg",
+      "description": "on it tumblr kickstarter thundercats migas everyday carry squid palo santo leggings. Food truck truffaut"
+    },
+    {
+      "id": 12,
+      "title": "quarantine buddy",
+      "category": "shakes",
+      "price": 16.99,
+      "img": "./images/item-9.jpeg",
+      "description": "skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing"
+    }
+  ]
+}
