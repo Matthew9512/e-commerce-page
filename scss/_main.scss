@@ -122,6 +122,7 @@ $breakpoint-xl: 1200px;
 body {
   background-color: var(--backgroundMainWhite);
   font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
 }
 
 .main-container {
@@ -129,10 +130,16 @@ body {
   margin: 0 auto;
   background-color: var(--indigo);
   min-height: 100vh;
+  background-color: var(--white);
   // position: relative; // for footer
   // padding-bottom: ; // for footer
 }
 
 .hidden {
   display: none;
+}
+
+.quick-test-img {
+  width: 15em;
+  height: 15em;
 }

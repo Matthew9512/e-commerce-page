@@ -1,7 +1,6 @@
-console.log(`shop page`);
-// fetch('https://fakestoreapi.com/products')
-//   .then((res) => res.json())
-//   .then((json) => console.log(json));
+import * as model from './src/model.js';
+
+// model.getShopItems();
 
 const saleTimer = function () {
   const days = document.querySelector('.sale__days');
@@ -53,3 +52,45 @@ const saleTimer = function () {
 
 // const timer = setInterval(saleTimer, 1000);
 // saleTimer();
+
+const carouselWrapper = document.querySelector('.carousel__wrapper');
+const carouselItems = document.querySelectorAll('.carousel__item');
+const carouselBtnsLeft = document.querySelector('.carousel__btns-left');
+const carouselBtnsRight = document.querySelector('.carousel__btns-right');
+
+let currentItem = 0;
+// lenght of carousel items
+const carouselItemsLength = carouselItems.length;
+
+// // move carousel
+const carousel = (currentItem) => {
+  carouselItems.forEach((item, index) => {
+    item.style.transform = `translateX(${100 * (index - currentItem)}%)`;
+  });
+};
+
+// move carousel to the right side
+const moveRight = () => {
+  if (currentItem === carouselItemsLength - 1) {
+    currentItem++;
+    currentItem = 0;
+  } else currentItem++;
+  carousel(currentItem);
+};
+
+// move carousel to the left side
+const moveLeft = () => {
+  if (currentItem === 0) {
+    currentItem--;
+    currentItem = carouselItemsLength - 1;
+  } else currentItem--;
+  carousel(currentItem);
+};
+
+// automatically move carousel
+// setInterval(() => {
+//   moveRight();
+// }, 3000);
+
+carouselBtnsLeft.addEventListener('click', moveLeft);
+carouselBtnsRight.addEventListener('click', moveRight);

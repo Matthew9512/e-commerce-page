@@ -1,0 +1,50 @@
+// for now
+$breakpoint-xs: 0;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 900px;
+$breakpoint-xl: 1200px;
+// for now
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-block: 1em;
+
+  .sale {
+    margin-inline: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 40%;
+
+    @media (max-width: $breakpoint-lg) {
+      width: 70%;
+    }
+
+    &__message {
+      letter-spacing: 0.1em;
+      text-decoration: underline;
+    }
+    &__timer {
+      display: flex;
+      justify-content: space-around;
+      width: 50%;
+    }
+  }
+
+  &__title {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding-block: 0.4em;
+  }
+  &__text {
+    width: 50%;
+
+    @media (max-width: $breakpoint-lg) {
+      width: 80%;
+    }
+  }
+}

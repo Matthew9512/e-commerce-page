@@ -85,16 +85,16 @@
 /* media queries */
 @media screen and (max-width: 700px) {
   .navbar {
-    padding: 2em 2em 0 2em;
+    padding: 2em;
   }
   .navbar__menu-button-container {
     display: flex;
   }
   .navbar__menu {
     position: absolute;
-    top: 6.5em;
-    // top: 0.5em;
-    // margin-top: 50px;
+    // top: 6.5em; // with sale
+    top: 0.5em;
+    margin-top: 50px;
     left: 0;
     flex-direction: column;
     width: 100%;
@@ -102,14 +102,13 @@
     align-items: center;
     z-index: 1;
   }
-  #navbar__menu-toggle ~ .navbar__menu li {
+  .navbar__menu-toggle ~ .navbar__menu li {
     display: none;
     transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
   }
-  #navbar__menu-toggle:checked ~ .navbar__menu li {
+  .navbar__menu-toggle:checked ~ .navbar__menu li {
     display: block;
     text-align: center;
-    border: 1px solid #333;
     height: 4em;
     padding: 1.5em;
     transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
