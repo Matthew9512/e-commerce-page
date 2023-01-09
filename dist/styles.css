@@ -14,6 +14,8 @@ h1,
 h2,
 h3,
 h4,
+h5,
+h6,
 p,
 figure,
 blockquote,
@@ -62,6 +64,8 @@ select {
 
 button {
   color: inherit;
+  background-color: transparent;
+  outline: none;
 }
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
@@ -116,6 +120,8 @@ body {
   background-color: var(--indigo);
   min-height: 100vh;
   background-color: var(--white);
+  position: relative;
+  padding-bottom: 10em;
 }
 
 .hidden {
@@ -292,7 +298,7 @@ body {
 
 .carousel {
   width: 100%;
-  height: 50vh;
+  height: 60vh;
   overflow: hidden;
 }
 .carousel__btns {
@@ -362,4 +368,195 @@ body {
 }
 .carousel .active {
   transition: transform 0.6s ease-in-out 0s;
+}
+
+.hero__shop {
+  margin-block: 2em;
+  padding-inline: 3em;
+}
+.hero__shop-title {
+  padding-top: 1em;
+}
+.hero__shop-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  padding: 2em;
+  gap: 1em;
+}
+.hero__shop-person {
+  background: url("/images/pexels-azraq-al-rezoan-7518184.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 20em;
+  height: 25em;
+  position: relative;
+}
+.hero__shop-person-men, .hero__shop-person-women, .hero__shop-person-accessories {
+  background-color: transparent;
+  outline: none;
+  border: 1px solid black;
+  border-radius: 1em 0.5em;
+  padding: 0.4em 0.6em;
+  position: absolute;
+  top: 2em;
+  left: 2em;
+}
+.hero__shop-person-men, .hero__shop-person-women, .hero__shop-person-accessories:hover {
+  cursor: pointer;
+}
+.hero__shop-details {
+  display: flex;
+  justify-content: center;
+  padding: 1em 2em;
+}
+@media (max-width: 768px) {
+  .hero__shop-details {
+    flex-direction: column;
+    width: 60%;
+    align-items: flex-start;
+    margin-inline: auto;
+  }
+}
+@media (max-width: 650px) {
+  .hero__shop-details {
+    flex-direction: column;
+    width: 20em;
+    align-items: center;
+    margin-inline: auto;
+  }
+}
+.hero__shop-details-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 1em;
+}
+.hero__shop-details-info i {
+  font-size: 1.2rem;
+}
+.hero__shop-info {
+  margin-inline: 0.8em;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2em;
+  height: 10em;
+  background-color: rgb(25, 34, 55);
+  color: white;
+  position: absolute; /* absolute to main page element */
+  bottom: 0;
+  width: 100%;
+}
+@media (max-width: 900px) {
+  .footer {
+    height: auto;
+  }
+}
+.footer__text {
+  text-align: center;
+  width: 60%;
+  padding-bottom: 1em;
+}
+@media (max-width: 900px) {
+  .footer__text {
+    width: 80%;
+  }
+}
+.footer__div {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: rgb(41, 41, 41);
+  padding-block: 1em;
+}
+
+.cart {
+  width: 25em;
+  height: 100vh;
+  position: fixed;
+  right: 0;
+  top: 0;
+  padding: 2em;
+  z-index: 1;
+  background-color: #d0c4c4;
+}
+.cart ::-webkit-scrollbar {
+  display: none;
+}
+.cart__btn-close {
+  background-color: transparent;
+  width: 2em;
+  height: 2em;
+  outline: none;
+  border-radius: 50%;
+  position: absolute;
+  top: 1em;
+  right: 1em;
+}
+.cart-title {
+  text-align: center;
+  margin-block: 2em;
+  letter-spacing: 0.1em;
+}
+.cart__wrapper {
+  max-height: 80vh;
+  overflow-y: scroll;
+}
+.cart__wrapper-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1em;
+}
+.cart__wrapper-item-img {
+  border-radius: 50%;
+}
+.cart__wrapper-item-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 75%;
+  height: 100%;
+  margin-left: 0.4em;
+}
+.cart__product-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.cart__product-add {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.cart__sum {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8em;
+  margin-top: 2em;
+}
+.cart__sum-number {
+  font-weight: 700;
+}
+.cart .btn-clear {
+  padding: 0.4em 0.6em;
+  border-radius: 0.4em;
+}
+
+.show {
+  transform: translate(0);
+  transition: all 1s ease;
+}
+
+.hide {
+  transform: translate(100%);
+  transition: all 1s ease;
 }/*# sourceMappingURL=styles.css.map */

@@ -1,4 +1,10 @@
-import * as model from './src/model.js';
+import * as model from './model.js';
+
+const cart = document.querySelector('.cart');
+
+// btns
+const btnShoppingCart = document.querySelector('.btn-shopping-cart');
+const cartBtnClose = document.querySelector('.cart__btn-close');
 
 // model.getShopItems();
 
@@ -92,5 +98,20 @@ const moveLeft = () => {
 //   moveRight();
 // }, 3000);
 
+// show cart
+const openCart = function () {
+  console.log(`openCart`);
+  cart.classList.remove('hide');
+  cart.classList.add('show');
+};
+// close cart
+const closeCart = function () {
+  console.log(`closeCart`);
+  cart.classList.remove('show');
+  cart.classList.add('hide');
+};
+
 carouselBtnsLeft.addEventListener('click', moveLeft);
 carouselBtnsRight.addEventListener('click', moveRight);
+btnShoppingCart.addEventListener('click', openCart);
+cartBtnClose.addEventListener('click', closeCart);

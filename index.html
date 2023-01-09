@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/dist/styles.css" />
     <script src="https://kit.fontawesome.com/da392c22d2.js" crossorigin="anonymous"></script>
-    <script type="module" src="controller.js"></script>
+    <script type="module" src="/src/controller.js"></script>
     <title>Shop page</title>
   </head>
   <body>
@@ -21,16 +21,16 @@
         <!--  -->
         <ul class="navbar__menu">
           <li>
-            <a href="#start" class="navbar__link"><button class="navbar__btn">start</button></a>
+            <a href="#start" class="navbar__link"><button class="navbar__btn">Home</button></a>
           </li>
           <li>
-            <a href="/trening/trening.html" class="navbar__link"><button class="navbar__btn">trening</button></a>
+            <a href="shop.html" class="navbar__link"><button class="navbar__btn">Shop</button></a>
           </li>
           <li>
-            <a href="meal/meal.html" class="navbar__link"><button class="navbar__btn">meal</button></a>
+            <a href="meal/meal.html" class="navbar__link"><button class="navbar__btn">Contact</button></a>
           </li>
           <li>
-            <a href="recipe/recipe.html" class="navbar__link"><button class="navbar__btn navbar__btn-login">recipe</button></a>
+            <button class="navbar__btn btn-shopping-cart"><i class="fa-solid fa-cart-shopping"></i></button>
           </li>
         </ul>
       </nav>
@@ -93,13 +93,93 @@
           </div>
         </article>
       </section>
-      <!--  -->
-      <section id="test">
-        <!-- <p class="quick-test"></p>
-        <p class="quick-test"></p>
-        <p class="quick-test"></p>
-        <p class="quick-test"></p>
-        <img src=""> -->
+      <!-- hero shop -->
+      <section class="hero__shop">
+        <h2 class="hero__shop-title">Lorem ipsum dolor sit.</h2>
+        <article class="hero__shop-wrapper">
+          <div class="hero__shop-person">
+            <!-- <img src="images/pexels-azraq-al-rezoan-7518184.jpg" alt="person img" class="hero__shop-person-img" /> -->
+            <button class="hero__shop-person-men">Lorem, ipsum.</button>
+          </div>
+          <div class="hero__shop-person">
+            <!-- <img src="images/pexels-azraq-al-rezoan-7518184.jpg" alt="person img" class="hero__shop-person-img" /> -->
+            <button class="hero__shop-person-women">Lorem, ipsum.</button>
+          </div>
+          <div class="hero__shop-person">
+            <!-- <img src="images/pexels-azraq-al-rezoan-7518184.jpg" alt="person img" class="hero__shop-person-img" /> -->
+            <button class="hero__shop-person-accessories">Lorem, ipsum.</button>
+          </div>
+        </article>
+        <h3 class="hero__shop-detalis-title">What do you get?</h3>
+        <article class="hero__shop-details">
+          <div class="hero__shop-details-info shipping">
+            <i class="fa-solid fa-truck-fast"></i>
+            <div class="hero__shop-info">
+              <p>Free shipping</p>
+              <p>Suffered Alteration in Some Form</p>
+            </div>
+          </div>
+          <div class="hero__shop-details-info money">
+            <i class="fa-solid fa-money-bill"></i>
+            <div class="hero__shop-info">
+              <p>Cach on delivery</p>
+              <p>The Internet Tend To Repeat</p>
+            </div>
+          </div>
+          <div class="hero__shop-details-info returns">
+            <i class="fa-solid fa-rotate-left"></i>
+            <div class="hero__shop-info">
+              <p>60 days return</p>
+              <p>Making it Look Like Readable</p>
+            </div>
+          </div>
+          <div class="hero__shop-details-info location">
+            <i class="fa-solid fa-map-location"></i>
+            <div class="hero__shop-info">
+              <p>Our Locations</p>
+              <p>We have stores all around the world</p>
+            </div>
+          </div>
+        </article>
+      </section>
+      <!-- footer -->
+      <footer class="footer">
+        <p class="footer__text">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Exercitationem, et deserunt. Officiis, nobis? Alias obcaecati aliquid
+          aspernatur quam perspiciatis! Omnis.
+        </p>
+        <div class="footer__div">
+          <p class="footer__div-text">Created by Mateusz in 2022 @copy</p>
+        </div>
+      </footer>
+      <!-- shoppingCart -->
+      <article class="cart hide">
+        <button class="cart__btn-close"><i class="fa-solid fa-xmark"></i></button>
+        <h3 class="cart-title">Your basket</h3>
+        <!-- cart-container -->
+        <div class="cart__wrapper">
+          <!-- item -->
+          <div class="cart__wrapper-item">
+            <img src="images/pexels-azraq-al-rezoan-7518184.jpg" width="60" height="60" alt="person img" class="cart__wrapper-item-img" />
+            <div class="cart__wrapper-item-details">
+              <div class="cart__product-info">
+                <h4>queen bed</h4>
+                <h5>$9.00</h5>
+                <span class="remove-item">remove</span>
+              </div>
+              <div class="cart__product-add">
+                <i class="fas fa-chevron-up"></i>
+                <p class="item-amount">1</p>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cart__sum">
+          <p class="cart__sum-number">Total cost: 1234$</p>
+          <button class="btn-clear">Clear basket</button>
+        </div>
+      </article>
       </section>
     </main>
   </body>

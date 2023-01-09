@@ -15,6 +15,8 @@ h1,
 h2,
 h3,
 h4,
+h5,
+h6,
 p,
 figure,
 blockquote,
@@ -63,6 +65,8 @@ select {
 
 button {
   color: inherit;
+  background-color: transparent;
+  outline: none;
 }
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
@@ -131,8 +135,8 @@ body {
   background-color: var(--indigo);
   min-height: 100vh;
   background-color: var(--white);
-  // position: relative; // for footer
-  // padding-bottom: ; // for footer
+  position: relative; // for footer
+  padding-bottom: 10em; // for footer
 }
 
 .hidden {

@@ -1,0 +1,38 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2em;
+  height: 10em;
+  background-color: rgb(25, 34, 55);
+  color: white;
+  position: absolute; /* absolute to main page element */
+  bottom: 0;
+  width: 100%;
+
+  @media (max-width: 900px) {
+    height: auto;
+  }
+
+  &__text {
+    text-align: center;
+    width: 60%;
+    padding-bottom: 1em;
+
+    @media (max-width: 900px) {
+      width: 80%;
+    }
+  }
+
+  &__div {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: rgb(41, 41, 41);
+    padding-block: 1em;
+
+    // &-text {
+    // }
+  }
+}
