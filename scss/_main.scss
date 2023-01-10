@@ -139,11 +139,18 @@ body {
   padding-bottom: 10em; // for footer
 }
 
-.hidden {
-  display: none;
+.btn-shopping-cart-amount {
+  position: absolute;
+  top: 0.4em;
+  right: 2em;
+  background-color: rgb(41, 41, 41);
+  width: 1.4em;
+  height: 1.4em;
+  border-radius: 50%;
+  text-align: center;
+  color: var(--white);
 }
 
-.quick-test-img {
-  width: 15em;
-  height: 15em;
+.hidden {
+  display: none;
 }

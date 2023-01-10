@@ -100,15 +100,13 @@ const moveLeft = () => {
 
 // show cart
 const openCart = function () {
-  console.log(`openCart`);
-  cart.classList.remove('hide');
-  cart.classList.add('show');
+  cart.classList.toggle('hide');
+  cart.classList.toggle('show');
 };
 // close cart
 const closeCart = function () {
-  console.log(`closeCart`);
-  cart.classList.remove('show');
-  cart.classList.add('hide');
+  cart.classList.toggle('show');
+  cart.classList.toggle('hide');
 };
 
 carouselBtnsLeft.addEventListener('click', moveLeft);
