@@ -35,7 +35,7 @@ export const takeProductsData = function (e) {
   if (!click.classList.contains('shop__products-btn')) return;
 
   // find clicked product in arr of fetched products and return this items data
-  const productData = state.productList.find((value) => value.id == productItem.dataset.id);
+  const productData = state.productList.find((value) => value.id === Number(productItem.dataset.id));
 
   // add clicked product to ls
   addItemLS(productData);
@@ -61,6 +61,7 @@ const addItemLS = function (productData) {
     price: productData.price,
     title: productData.title,
   };
+  console.log(lsObj);
 
   lsItems.push(lsObj);
   localStorage.setItem('shopping-cart', JSON.stringify(lsItems));
@@ -69,4 +70,64 @@ const addItemLS = function (productData) {
   cartItemsAmount();
   // update shopping cart list
   renderShoppingCart();
+};
+
+// update LS items
+export const updateLS = function (target) {
+  const lsItems = getLS();
+
+  // return items with id different than current targets id
+  const update = lsItems.filter((item) => item.id !== Number(target.dataset.id));
+
+  // add to ls
+  localStorage.setItem('shopping-cart', JSON.stringify(update));
+};
+
+// ===== shopping cart ===== //
+let itemSumPrice = [];
+//
+export const productAmount = function (e) {
+  const click = e.target;
+  const parent = click.closest('.cart__wrapper-item');
+  let itemAmount = parent.querySelector('.item-amount');
+  let cartProductInfoPrice = parent.querySelector('.cart__product-info-price');
+
+  let cartSumNumber = document.querySelector('.cart__sum-number');
+  let cartProductInfo = document.querySelectorAll('.cart__product-info-price');
+  // const arrowDown = parent.querySelector('.fa-chevron-down');
+  cartSumNumber.innerHTML = '';
+
+  const lsArr = getLS();
+  const item = lsArr.find((value) => value.id === +parent.dataset.id);
+  const price = item.price;
+
+  // increment
+  if (click.classList.contains('fa-chevron-up')) {
+    itemAmount.textContent++;
+    const h = (cartProductInfoPrice.textContent = price * itemAmount.textContent);
+    console.log('plus');
+
+    // cartSumNumber.innerHTML = `Total cost: ${h}$`;
+
+    // itemSumPrice.push(h);
+    // const sum = itemSumPrice.reduce((acc, value) => acc + value, 0);
+    // console.log(itemSumPrice);
+    // console.log(sum);
+  }
+
+  // decrement
+  if (click.classList.contains('fa-chevron-down')) {
+    if (itemAmount.textContent == 1) {
+      // arrowDown.classList.add('disabled');
+      return;
+    }
+    itemAmount.textContent--;
+    const h = (cartProductInfoPrice.textContent = price * itemAmount.textContent);
+    console.log('minus');
+
+    // itemSumPrice.push(h);
+    // const sum = itemSumPrice.reduce((acc, value) => acc + value, 0);
+    // console.log(itemSumPrice);
+    // console.log(sum);
+  }
 };

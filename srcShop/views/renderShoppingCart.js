@@ -9,13 +9,13 @@ export const renderShoppingCart = function () {
 
   for (const item of lsItems) {
     const html = `
-    <div class="cart__wrapper-item" data-id="${item.id}">
+    <div class="cart__wrapper-item" data-id=${item.id}>
     <img src="${item.img}" width="60" height="60" alt="person img" class="cart__wrapper-item-img" />
     <div class="cart__wrapper-item-details">
       <div class="cart__product-info">
         <h4>${item.title}</h4>
-        <h5>${item.price}</h5>
-        <span class="remove-item">remove</span>
+        <h5 class="cart__product-info-price">${item.price}</h5>
+        <span class="remove-item"><i class="fa-solid fa-trash"></i></span>
       </div>
       <div class="cart__product-add">
         <i class="fas fa-chevron-up"></i>

@@ -1,9 +1,10 @@
-import { getProductsList, getLS, takeProductsData } from './model.js';
+import { getProductsList, takeProductsData, getLS, updateLS, productAmount } from './model.js';
 import { renderShoppingCart } from './views/renderShoppingCart.js';
 
 const cart = document.querySelector('.cart');
 const shopProducts = document.querySelector('.shop__products');
 const btnShoppingCartAmount = document.querySelector('.btn-shopping-cart-amount');
+const cartWrapper = document.querySelector('.cart__wrapper');
 
 // btns
 const btnShoppingCart = document.querySelector('.btn-shopping-cart');
@@ -27,6 +28,18 @@ export const cartItemsAmount = function () {
   btnShoppingCartAmount.textContent = `${lsLength}`;
 };
 
+// removeCartItem
+export const removeCartItem = function (e) {
+  const click = e.target;
+  const parent = click.closest('.cart__wrapper');
+  const target = click.closest('.cart__wrapper-item');
+
+  if (!click.classList.contains('fa-trash')) return;
+  parent.removeChild(target);
+  updateLS(target);
+};
+
+//
 const init = function () {
   cartItemsAmount();
   // fetch products
@@ -36,6 +49,9 @@ const init = function () {
 };
 init();
 
+// addEventListeners
 btnShoppingCart.addEventListener('click', openCart);
 cartBtnClose.addEventListener('click', closeCart);
 shopProducts.addEventListener('click', takeProductsData);
+cartWrapper.addEventListener('click', removeCartItem);
+cartWrapper.addEventListener('click', productAmount);
