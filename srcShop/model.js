@@ -54,8 +54,8 @@ const addItemLS = function (productData) {
 
   // clicked product data
   const lsObj = {
-    category: productData.category,
-    description: productData.description,
+    // category: productData.category,
+    // description: productData.description,
     id: productData.id,
     img: productData.img,
     price: productData.price,
@@ -68,6 +68,8 @@ const addItemLS = function (productData) {
   lsItems.push(lsObj);
   localStorage.setItem('shopping-cart', JSON.stringify(lsItems));
 
+  // change btn text
+  checkLS();
   // update number of items in shopping cart icon
   cartItemsAmount();
   // update shopping cart list
@@ -87,8 +89,12 @@ export const updateLS = function (target) {
   localStorage.setItem('shopping-cart', JSON.stringify(update));
 };
 
+//
+export const checkLS = function () {
+  console.log(`btn value`);
+};
+
 // ===== shopping cart ===== //
-// new
 export const productAmount = function (e) {
   const click = e.target;
   const parent = click.closest('.cart__wrapper-item');
@@ -97,11 +103,13 @@ export const productAmount = function (e) {
 
   const lsArr = getLS();
 
+  // increase amount of product
   if (click.classList.contains('fa-chevron-up')) {
     const currentItem = lsArr.find((value) => value.id === parseFloat(parent.dataset.id));
     increaseCartItemValue(itemAmount, cartProductInfoPrice, currentItem, lsArr);
   }
 
+  // decrease amount of product
   if (click.classList.contains('fa-chevron-down')) {
     // stop if amount current item = 1(string)
     if (itemAmount.textContent === '1') return;
@@ -130,15 +138,12 @@ const increaseCartItemValue = function (itemAmount, cartProductInfoPrice, curren
   cartProductInfoPrice.textContent = updatedPrice.toFixed(2) + '$';
   // override price of item
   currentItem.increasedPrice = updatedPrice;
-  console.log(updatedPrice);
   // add to ls
   localStorage.setItem('shopping-cart', JSON.stringify(lsArr));
-  console.log(`lsItemPrice`, '=>', lsItemPrice);
-  console.log(`increasedPrice`, '=>', increasedPrice);
-
+  // number of items in cart
+  cartItemsAmount();
+  // sum price of all products in cart
   totalPrice();
-  // console.log(lsItemAmount);
-  // console.log(currentItem);
 };
 
 const decreaseCartItemValue = function (itemAmount, cartProductInfoPrice, currentItem, lsArr) {
@@ -160,17 +165,13 @@ const decreaseCartItemValue = function (itemAmount, cartProductInfoPrice, curren
   cartProductInfoPrice.textContent = updatedPrice.toFixed(2) + '$';
   // override price of item
   currentItem.increasedPrice = updatedPrice;
-  console.log(updatedPrice);
   // add to ls
   localStorage.setItem('shopping-cart', JSON.stringify(lsArr));
-  console.log(`lsItemPrice`, '=>', lsItemPrice);
-  console.log(`increasedPrice`, '=>', increasedPrice);
-
+  // number of items in cart
+  cartItemsAmount();
+  // sum price of all products in cart
   totalPrice();
-  // console.log(lsItemAmount);
-  // console.log(currentItem);
 };
-// new
 
 // sum price of all products in cart
 export const totalPrice = function () {
@@ -180,6 +181,4 @@ export const totalPrice = function () {
     return acc + value.increasedPrice;
   }, 0);
   cartSumNumber.textContent = parseFloat(`${sum}`).toFixed(2) + '$';
-  console.log(sum);
 };
-totalPrice();

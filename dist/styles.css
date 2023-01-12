@@ -583,7 +583,6 @@ body {
 .shop__products-item {
   width: 15em;
   border: 1px solid transparent;
-  background-color: yellow;
 }
 .shop__products-item:hover {
   border-color: black;

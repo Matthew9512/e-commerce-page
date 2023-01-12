@@ -1,4 +1,4 @@
-import { getProductsList, takeProductsData, getLS, updateLS, productAmount, totalPrice } from './model.js';
+import { getProductsList, takeProductsData, getLS, updateLS, productAmount, totalPrice, checkLS } from './model.js';
 import { renderShoppingCart } from './views/renderShoppingCart.js';
 
 const cart = document.querySelector('.cart');
@@ -24,8 +24,12 @@ const closeCart = function () {
 // display number of items on shopping cart
 export const cartItemsAmount = function () {
   const lsItems = getLS();
-  const lsLength = lsItems.length;
-  btnShoppingCartAmount.textContent = `${lsLength}`;
+  // const lsLength = lsItems.length;
+  // btnShoppingCartAmount.textContent = `${lsLength}`;
+  const items = lsItems.reduce((acc, value) => {
+    return acc + value.amount;
+  }, 0);
+  btnShoppingCartAmount.textContent = items;
 };
 
 // removeCartItem
@@ -36,17 +40,25 @@ export const removeCartItem = function (e) {
 
   if (!click.classList.contains('fa-trash')) return;
   parent.removeChild(target);
+
   updateLS(target);
+  // sum price of all products in cart
   totalPrice();
+  // number of items in cart
+  cartItemsAmount();
 };
 
 //
-const init = function () {
+const init = async function () {
   cartItemsAmount();
   // fetch products
-  getProductsList();
+  await getProductsList();
   // render shopping cart
   renderShoppingCart();
+  // sum price of all products in cart
+  totalPrice();
+  //
+  checkLS();
 };
 init();
 
