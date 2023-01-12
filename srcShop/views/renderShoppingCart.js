@@ -14,12 +14,12 @@ export const renderShoppingCart = function () {
     <div class="cart__wrapper-item-details">
       <div class="cart__product-info">
         <h4>${item.title}</h4>
-        <h5 class="cart__product-info-price">${item.price}</h5>
+        <h5 class="cart__product-info-price">${item.increasedPrice}$</h5>
         <span class="remove-item"><i class="fa-solid fa-trash"></i></span>
       </div>
       <div class="cart__product-add">
         <i class="fas fa-chevron-up"></i>
-        <p class="item-amount">1</p>
+        <p class="item-amount">${item.amount}</p>
         <i class="fas fa-chevron-down"></i>
       </div>
     </div>

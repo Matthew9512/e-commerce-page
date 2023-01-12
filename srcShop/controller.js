@@ -1,4 +1,4 @@
-import { getProductsList, takeProductsData, getLS, updateLS, productAmount } from './model.js';
+import { getProductsList, takeProductsData, getLS, updateLS, productAmount, totalPrice } from './model.js';
 import { renderShoppingCart } from './views/renderShoppingCart.js';
 
 const cart = document.querySelector('.cart');
@@ -37,6 +37,7 @@ export const removeCartItem = function (e) {
   if (!click.classList.contains('fa-trash')) return;
   parent.removeChild(target);
   updateLS(target);
+  totalPrice();
 };
 
 //
