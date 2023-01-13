@@ -5,8 +5,8 @@ export const renderProducts = function () {
 
   for (const product of state.productList) {
     const html = `
-      <div class="shop__products-item" data-id="${product.id}">
-        <img src="${product.img}" alt="" class="shop__products-item-img" />
+      <div class="shop__products-item" data-id="${product.id}" data-category="${product.category}">
+        <img src="${product.image}" alt="" class="shop__products-item-img" />
         <div class="shop__products-item-details">
           <p class="shop__products-title">${product.title}</p>
           <p class="shop__products-price">${product.price}<span>$</span></p>

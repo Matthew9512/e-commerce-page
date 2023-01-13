@@ -5,7 +5,7 @@
       "category": "lunch",
       "title": "burger",
       "price": 15,
-      "img": "https://obiaddlataty.pl/wp-content/uploads/2020/02/domowa_pizza-scaled.jpg",
+      "image": "https://obiaddlataty.pl/wp-content/uploads/2020/02/domowa_pizza-scaled.jpg",
       "description": "Lorem ipsum dolor sit amet !"
     },
     {
@@ -13,14 +13,15 @@
       "category": "lunch",
       "title": "burger",
       "price": 15,
-      "img": "https://images.pexels.com/photos/1199957/pexels-photo-1199957.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "image": "https://images.pexels.com/photos/1199957/pexels-photo-1199957.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "description": "Lorem ipsum dolor sit amet !"
     },
     {
       "id": 3,
-      "title": "lunch",
+      "category": "lunch",
+      "title": "pasta",
       "price": 15,
-      "img": "https://images.pexels.com/photos/803963/pexels-photo-803963.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "image": "https://images.pexels.com/photos/803963/pexels-photo-803963.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "description": "Lorem ipsum dolor sit amet !"
     },
     {
@@ -28,7 +29,7 @@
       "title": "buttermilk pancakes",
       "category": "breakfast",
       "price": 15.99,
-      "img": "./images/item-1.jpeg",
+      "image": "./images/item-1.jpeg",
       "description": "I'm baby woke mlkshk "
     },
     {
@@ -36,7 +37,7 @@
       "title": "diner double",
       "category": "lunch",
       "price": 13.99,
-      "img": "./images/item-2.jpeg",
+      "image": "./images/item-2.jpeg",
       "description": "vaporware iPhone mumblecore "
     },
     {
@@ -44,7 +45,7 @@
       "title": "godzilla milkshake",
       "category": "shakes",
       "price": 6.99,
-      "img": "./images/item-3.jpeg",
+      "image": "./images/item-3.jpeg",
       "description": "ombucha chillwave f"
     },
     {
@@ -52,7 +53,7 @@
       "title": "country delight",
       "category": "breakfast",
       "price": 20.99,
-      "img": "./images/item-4.jpeg",
+      "image": "./images/item-4.jpeg",
       "description": "Shabby chic keffiyeh "
     },
     {
@@ -60,7 +61,7 @@
       "title": "egg attack",
       "category": "lunch",
       "price": 22.99,
-      "img": "./images/item-5.jpeg",
+      "image": "./images/item-5.jpeg",
       "description": "franzen vegan pabst bicycle rights 's pop-up"
     },
     {
@@ -68,7 +69,7 @@
       "title": "oreo dream",
       "category": "shakes",
       "price": 18.99,
-      "img": "./images/item-6.jpeg",
+      "image": "./images/item-6.jpeg",
       "description": "Portland chicharrones ethical edison bulb"
     },
     {
@@ -76,7 +77,7 @@
       "title": "bacon overflow",
       "category": "breakfast",
       "price": 8.99,
-      "img": "./images/item-7.jpeg",
+      "image": "./images/item-7.jpeg",
       "description": "carry jianbing normcore freegan"
     },
     {
@@ -84,7 +85,7 @@
       "title": "american classic",
       "category": "lunch",
       "price": 12.99,
-      "img": "./images/item-8.jpeg",
+      "image": "./images/item-8.jpeg",
       "description": "on it tumblr kickstarter thundercats"
     },
     {
@@ -92,7 +93,7 @@
       "title": "quarantine buddy",
       "category": "shakes",
       "price": 16.99,
-      "img": "./images/item-9.jpeg",
+      "image": "./images/item-9.jpeg",
       "description": "skateboard fam synth authentic"
     }
   ]

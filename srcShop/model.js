@@ -8,18 +8,28 @@ export const state = {
 };
 
 // fetch product list
+// // === fakeapi
+// export const getProductsList = async function () {
+//   const respond = await fetch('https://fakestoreapi.com/products');
+//   const data = await respond.json();
+//   console.log(data);
+//   destructuring(data);
+// };
+// // === fakeapi
+// === json
 export const getProductsList = async function () {
   const respond = await fetch('../data.json');
   const data = await respond.json();
   destructuring(data);
-  // console.log(data);
+  console.log(data);
 };
+// === json
 
 // destructuring fetched data
 const destructuring = function (data) {
   const productItems = data.menu.map((item) => {
-    const { category, description, img, price, title, id } = item;
-    return { category, description, img, price, title, id };
+    const { category, description, image, price, title, id } = item;
+    return { category, description, image, price, title, id };
   });
 
   state.productList = productItems;

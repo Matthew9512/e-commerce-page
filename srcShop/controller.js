@@ -79,6 +79,40 @@ export const removeProductFromCart = function (click) {
   model.totalPrice();
 };
 
+// ====== new
+
+export const _debounce = function (fn, deley = 300) {
+  let id;
+  return (...args) => {
+    if (id) clearInterval(id);
+    id = setTimeout(() => {
+      fn(...args);
+    }, deley);
+  };
+};
+
+const input = document.querySelector('#inp__sort');
+const btnSort = document.querySelector('#btn__sort');
+
+const sort = function () {
+  const inputValue = input.value;
+  const products = [...document.querySelectorAll('.shop__products-item')];
+
+  for (const product of products) {
+    const category = product.dataset.category;
+    console.log(category);
+    if (category.includes(inputValue)) {
+      console.log(category);
+      console.log(inputValue);
+      product.classList.remove('sorted');
+    } else product.classList.add('sorted');
+    // const sortedProducts = products.find((value) => value.dataset.category != inputValue);
+  }
+
+  console.log(products);
+  console.log(inputValue);
+};
+// ====== new
 //
 const init = async function () {
   cartItemsAmount();
@@ -90,6 +124,7 @@ const init = async function () {
   model.totalPrice();
   //
   model.properBtnText();
+  //
 };
 init();
 
@@ -99,3 +134,6 @@ cartBtnClose.addEventListener('click', closeCart);
 shopProducts.addEventListener('click', model.takeProductsData);
 cartWrapper.addEventListener('click', removeCartItem);
 cartWrapper.addEventListener('click', model.productAmount);
+// ====== new
+input.addEventListener('input', _debounce(sort));
+// ====== new
