@@ -27,7 +27,7 @@ const destructuring = function (data) {
   renderProducts();
 };
 
-//
+// take data from clicked product
 export const takeProductsData = function (e) {
   const click = e.target;
   const productItem = click.closest('.shop__products-item');
@@ -59,7 +59,7 @@ export const getLS = function () {
 const addItemLS = function (productData) {
   const lsItems = getLS();
 
-  // clicked product data
+  // push clicked product data to obj
   const lsObj = {
     id: productData.id,
     img: productData.img,
@@ -104,8 +104,13 @@ export const properBtnText = function () {
     // find in localStorage items with same id as shop items
     const lsID = lsArr.find((value) => value.id === productID);
 
-    if (lsID) item.querySelector('.shop__products-btn').textContent = `Remove from cart`;
-    else item.querySelector('.shop__products-btn').textContent = `Add to cart`;
+    const target = item.querySelector('.shop__products-btn');
+    const btnText = lsID ? `Remove from cart` : `Add to cart`;
+
+    target.textContent = btnText;
+
+    // if (lsID) item.querySelector('.shop__products-btn').textContent = `Remove from cart`;
+    // else item.querySelector('.shop__products-btn').textContent = `Add to cart`;
   }
 };
 
