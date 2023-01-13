@@ -1,4 +1,4 @@
-import { cartItemsAmount } from './controller.js';
+import { cartItemsAmount, removeProductFromCart } from './controller.js';
 import { renderProducts } from './views/renderProducts.js';
 import { renderShoppingCart } from './views/renderShoppingCart.js';
 
@@ -37,8 +37,15 @@ export const takeProductsData = function (e) {
   // find clicked product in arr of fetched products and return this items data
   const productData = state.productList.find((value) => value.id === Number(productItem.dataset.id));
 
-  // add clicked product to ls
-  addItemLS(productData);
+  if (click.textContent === `Add to cart`) {
+    click.textContent = `Remove from cart`;
+    // add clicked product to ls
+    addItemLS(productData);
+  } else {
+    click.textContent = `Add to cart`;
+    removeProductFromCart(click);
+  }
+  // change btn text after click
 };
 
 // ===== localStorage ===== //
@@ -48,14 +55,12 @@ export const getLS = function () {
   return lsItems;
 };
 
-// addItem localStorage
+// add item to localStorage
 const addItemLS = function (productData) {
   const lsItems = getLS();
 
   // clicked product data
   const lsObj = {
-    // category: productData.category,
-    // description: productData.description,
     id: productData.id,
     img: productData.img,
     price: productData.price,
@@ -63,13 +68,12 @@ const addItemLS = function (productData) {
     amount: 1,
     title: productData.title,
   };
-  console.log(lsObj);
 
   lsItems.push(lsObj);
   localStorage.setItem('shopping-cart', JSON.stringify(lsItems));
 
   // change btn text
-  checkLS();
+  properBtnText();
   // update number of items in shopping cart icon
   cartItemsAmount();
   // update shopping cart list
@@ -89,9 +93,20 @@ export const updateLS = function (target) {
   localStorage.setItem('shopping-cart', JSON.stringify(update));
 };
 
-//
-export const checkLS = function () {
-  console.log(`btn value`);
+// display proper btn text after page loads
+export const properBtnText = function () {
+  const shopProductsItem = document.querySelectorAll('.shop__products-item');
+  const lsArr = getLS();
+
+  for (const item of shopProductsItem) {
+    // id of shop items
+    const productID = parseFloat(item.dataset.id);
+    // find in localStorage items with same id as shop items
+    const lsID = lsArr.find((value) => value.id === productID);
+
+    if (lsID) item.querySelector('.shop__products-btn').textContent = `Remove from cart`;
+    else item.querySelector('.shop__products-btn').textContent = `Add to cart`;
+  }
 };
 
 // ===== shopping cart ===== //
@@ -124,6 +139,7 @@ const increaseCartItemValue = function (itemAmount, cartProductInfoPrice, curren
   const lsItemPrice = currentItem.price;
   let lsItemAmount = currentItem.amount;
   let increasedPrice = currentItem.increasedPrice;
+
   // === amount of items
   // increase amount of items
   lsItemAmount++;
@@ -131,6 +147,7 @@ const increaseCartItemValue = function (itemAmount, cartProductInfoPrice, curren
   itemAmount.textContent = lsItemAmount;
   // override amount of items
   currentItem.amount = lsItemAmount;
+
   // === price of item
   // calc new price
   const updatedPrice = lsItemPrice * lsItemAmount;
@@ -151,6 +168,7 @@ const decreaseCartItemValue = function (itemAmount, cartProductInfoPrice, curren
   const lsItemPrice = currentItem.price;
   let lsItemAmount = currentItem.amount;
   let increasedPrice = currentItem.increasedPrice;
+
   // === amount of items
   // increase amount of items
   lsItemAmount--;
@@ -158,6 +176,7 @@ const decreaseCartItemValue = function (itemAmount, cartProductInfoPrice, curren
   itemAmount.textContent = lsItemAmount;
   // override amount of items
   currentItem.amount = lsItemAmount;
+
   // === price of item
   // calc new price
   const updatedPrice = lsItemPrice * lsItemAmount;

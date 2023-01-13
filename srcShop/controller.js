@@ -1,4 +1,5 @@
-import { getProductsList, takeProductsData, getLS, updateLS, productAmount, totalPrice, checkLS } from './model.js';
+// import { getProductsList, takeProductsData, getLS, updateLS, productAmount, totalPrice, properBtnText } from './model.js';
+import * as model from './model.js';
 import { renderShoppingCart } from './views/renderShoppingCart.js';
 
 const cart = document.querySelector('.cart');
@@ -23,48 +24,78 @@ const closeCart = function () {
 
 // display number of items on shopping cart
 export const cartItemsAmount = function () {
-  const lsItems = getLS();
-  // const lsLength = lsItems.length;
-  // btnShoppingCartAmount.textContent = `${lsLength}`;
+  const lsItems = model.getLS();
+
   const items = lsItems.reduce((acc, value) => {
     return acc + value.amount;
   }, 0);
   btnShoppingCartAmount.textContent = items;
 };
 
-// removeCartItem
+// remove product from cart
 export const removeCartItem = function (e) {
   const click = e.target;
   const parent = click.closest('.cart__wrapper');
   const target = click.closest('.cart__wrapper-item');
+  // id of deleted cart item
+  const id = parseFloat(target.dataset.id);
 
   if (!click.classList.contains('fa-trash')) return;
   parent.removeChild(target);
 
-  updateLS(target);
+  // change shop product btn name
+  changeProductBtnText(id);
+
+  model.updateLS(target);
   // sum price of all products in cart
-  totalPrice();
+  model.totalPrice();
   // number of items in cart
   cartItemsAmount();
+};
+
+// change products btn text after removing item from cart
+export const changeProductBtnText = function (id) {
+  const shopProductsItem = [...document.querySelectorAll('.shop__products-item')];
+
+  const item = shopProductsItem.find((value) => value.dataset.id == id);
+  item.querySelector('.shop__products-btn').textContent = `Add to cart`;
+};
+
+// remove product from cart and localStorage after removing product from shop
+export const removeProductFromCart = function (click) {
+  const parentID = click.parentElement.dataset.id;
+  const lsArr = model.getLS();
+
+  const lsItems = lsArr.filter((value) => value.id != parentID);
+
+  lsArr.push(lsItems);
+  localStorage.setItem('shopping-cart', JSON.stringify(lsItems));
+
+  // update number of items in shopping cart icon
+  cartItemsAmount();
+  // update shopping cart list
+  renderShoppingCart();
+  // sum price of all products in cart
+  model.totalPrice();
 };
 
 //
 const init = async function () {
   cartItemsAmount();
   // fetch products
-  await getProductsList();
+  await model.getProductsList();
   // render shopping cart
   renderShoppingCart();
   // sum price of all products in cart
-  totalPrice();
+  model.totalPrice();
   //
-  checkLS();
+  model.properBtnText();
 };
 init();
 
 // addEventListeners
 btnShoppingCart.addEventListener('click', openCart);
 cartBtnClose.addEventListener('click', closeCart);
-shopProducts.addEventListener('click', takeProductsData);
+shopProducts.addEventListener('click', model.takeProductsData);
 cartWrapper.addEventListener('click', removeCartItem);
-cartWrapper.addEventListener('click', productAmount);
+cartWrapper.addEventListener('click', model.productAmount);
