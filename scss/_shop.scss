@@ -18,6 +18,7 @@
     padding: 1em;
 
     &-item {
+      position: relative;
       width: 15em;
       //   height: 15em;
       border: 1px solid transparent;
@@ -58,5 +59,18 @@
       border-bottom: none;
       outline: none;
     }
+  }
+}
+
+.sale__active {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #292929;
+  padding: 0.3em;
+  border-radius: 0 0 0 1em;
+
+  &-number {
+    color: white;
   }
 }

@@ -8,7 +8,7 @@ const cartBtnClose = document.querySelector('.cart__btn-close');
 
 // model.getShopItems();
 
-const saleTimer = function () {
+export const saleTimer = function () {
   const days = document.querySelector('.sale__days');
   const hours = document.querySelector('.sale__hours');
   const minutes = document.querySelector('.sale__minutes');
@@ -22,6 +22,7 @@ const saleTimer = function () {
   const futureDay = futureDate.getDate();
 
   // const deadline = new Date(;
+  // const deadline = new Date(futureYear, futureMonth, futureDay + 10, 10, 10, 19);
   const deadline = new Date(futureYear, futureMonth, futureDay + 10, 23, 59, 59);
   const deadlineDay = deadline.getDate();
   const deadlineHour = deadline.getHours();

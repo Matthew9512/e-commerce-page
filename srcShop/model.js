@@ -72,7 +72,7 @@ const addItemLS = function (productData) {
   // push clicked product data to obj
   const lsObj = {
     id: productData.id,
-    img: productData.img,
+    img: productData.image,
     price: productData.price,
     increasedPrice: productData.price,
     amount: 1,
@@ -118,9 +118,6 @@ export const properBtnText = function () {
     const btnText = lsID ? `Remove from cart` : `Add to cart`;
 
     target.textContent = btnText;
-
-    // if (lsID) item.querySelector('.shop__products-btn').textContent = `Remove from cart`;
-    // else item.querySelector('.shop__products-btn').textContent = `Add to cart`;
   }
 };
 
