@@ -1,4 +1,5 @@
-import { cartItemsAmount, removeProductFromCart } from './controller.js';
+// import { cartItemsAmount, removeProductFromCart } from './controller.js';
+import { cartItemsAmount, removeProductFromCart, totalPrice } from './modelShoppingCart.js';
 import { renderProducts } from './views/renderProducts.js';
 import { renderShoppingCart } from './views/renderShoppingCart.js';
 
@@ -80,8 +81,9 @@ const addItemLS = function (productData, productItem) {
       category: productData.category,
       id: productData.id,
       img: productData.image,
-      price: price,
-      increasedPrice: price,
+      price: (productData.price * (state.sale / 100)).toFixed(2),
+      increasedPrice: (productData.price * (state.sale / 100)).toFixed(2),
+      beforeSale: productData.price,
       amount: 1,
       title: productData.title,
     };
@@ -96,6 +98,7 @@ const addItemLS = function (productData, productItem) {
       img: productData.image,
       price: productData.price,
       increasedPrice: productData.price,
+      beforeSale: productData.price,
       amount: 1,
       title: productData.title,
     };
@@ -142,95 +145,96 @@ export const properBtnText = function () {
   }
 };
 
-// ===== shopping cart ===== //
-export const productAmount = function (e) {
-  const click = e.target;
-  const parent = click.closest('.cart__wrapper-item');
-  let itemAmount = parent.querySelector('.item-amount');
-  let cartProductInfoPrice = parent.querySelector('.cart__product-info-price');
+// // ===== shopping cart ===== //
+// export const productAmount = function (e) {
+//   const click = e.target;
+//   const parent = click.closest('.cart__wrapper-item');
+//   let itemAmount = parent.querySelector('.item-amount');
+//   let cartProductInfoPrice = parent.querySelector('.cart__product-info-price');
 
-  const lsArr = getLS();
+//   const lsArr = getLS();
 
-  // increase amount of product
-  if (click.classList.contains('fa-chevron-up')) {
-    const currentItem = lsArr.find((value) => value.id === parseFloat(parent.dataset.id));
-    increaseCartItemValue(itemAmount, cartProductInfoPrice, currentItem, lsArr);
-  }
+//   // increase amount of product
+//   if (click.classList.contains('fa-chevron-up')) {
+//     const currentItem = lsArr.find((value) => value.id === parseFloat(parent.dataset.id));
+//     increaseCartItemValue(itemAmount, cartProductInfoPrice, currentItem, lsArr);
+//   }
 
-  // decrease amount of product
-  if (click.classList.contains('fa-chevron-down')) {
-    // stop if amount current item = 1(string)
-    if (itemAmount.textContent === '1') return;
-    const currentItem = lsArr.find((value) => value.id === parseFloat(parent.dataset.id));
-    decreaseCartItemValue(itemAmount, cartProductInfoPrice, currentItem, lsArr);
-  }
-};
+//   // decrease amount of product
+//   if (click.classList.contains('fa-chevron-down')) {
+//     // stop if amount current item = 1(string)
+//     if (itemAmount.textContent === '1') return;
+//     const currentItem = lsArr.find((value) => value.id === parseFloat(parent.dataset.id));
+//     decreaseCartItemValue(itemAmount, cartProductInfoPrice, currentItem, lsArr);
+//   }
+// };
 
-// increase and update cart items values
-const increaseCartItemValue = function (itemAmount, cartProductInfoPrice, currentItem, lsArr) {
-  // current items data
-  const lsItemPrice = currentItem.price;
-  let lsItemAmount = currentItem.amount;
-  let increasedPrice = currentItem.increasedPrice;
+// // increase and update cart items values
+// const increaseCartItemValue = function (itemAmount, cartProductInfoPrice, currentItem, lsArr) {
+//   // current items data
+//   const lsItemPrice = currentItem.beforeSale;
+//   // const lsItemPrice = currentItem.price;
+//   let lsItemAmount = currentItem.amount;
+//   let increasedPrice = currentItem.increasedPrice;
 
-  // === amount of items
-  // increase amount of items
-  lsItemAmount++;
-  // update amount of items
-  itemAmount.textContent = lsItemAmount;
-  // override amount of items
-  currentItem.amount = lsItemAmount;
+//   // === amount of items
+//   // increase amount of items
+//   lsItemAmount++;
+//   // update amount of items
+//   itemAmount.textContent = lsItemAmount;
+//   // override amount of items
+//   currentItem.amount = lsItemAmount;
 
-  // === price of item
-  // calc new price
-  const updatedPrice = lsItemPrice * lsItemAmount;
-  // update price of item
-  cartProductInfoPrice.textContent = updatedPrice.toFixed(2) + '$';
-  // override price of item
-  currentItem.increasedPrice = updatedPrice;
-  // add to ls
-  localStorage.setItem('shopping-cart', JSON.stringify(lsArr));
-  // number of items in cart
-  cartItemsAmount();
-  // sum price of all products in cart
-  totalPrice();
-};
+//   // === price of item
+//   // calc new price
+//   const updatedPrice = lsItemPrice * lsItemAmount;
+//   // update price of item
+//   cartProductInfoPrice.textContent = updatedPrice.toFixed(2) + '$';
+//   // override price of item
+//   currentItem.increasedPrice = updatedPrice;
+//   // add to ls
+//   localStorage.setItem('shopping-cart', JSON.stringify(lsArr));
+//   // number of items in cart
+//   cartItemsAmount();
+//   // sum price of all products in cart
+//   totalPrice();
+// };
 
-const decreaseCartItemValue = function (itemAmount, cartProductInfoPrice, currentItem, lsArr) {
-  // current items data
-  const lsItemPrice = currentItem.price;
-  let lsItemAmount = currentItem.amount;
-  let increasedPrice = currentItem.increasedPrice;
+// const decreaseCartItemValue = function (itemAmount, cartProductInfoPrice, currentItem, lsArr) {
+//   // current items data
+//   const lsItemPrice = currentItem.beforeSale;
+//   let lsItemAmount = currentItem.amount;
+//   let increasedPrice = currentItem.increasedPrice;
 
-  // === amount of items
-  // increase amount of items
-  lsItemAmount--;
-  // update amount of items
-  itemAmount.textContent = lsItemAmount;
-  // override amount of items
-  currentItem.amount = lsItemAmount;
+//   // === amount of items
+//   // increase amount of items
+//   lsItemAmount--;
+//   // update amount of items
+//   itemAmount.textContent = lsItemAmount;
+//   // override amount of items
+//   currentItem.amount = lsItemAmount;
 
-  // === price of item
-  // calc new price
-  const updatedPrice = lsItemPrice * lsItemAmount;
-  // update price of item
-  cartProductInfoPrice.textContent = updatedPrice.toFixed(2) + '$';
-  // override price of item
-  currentItem.increasedPrice = updatedPrice;
-  // add to ls
-  localStorage.setItem('shopping-cart', JSON.stringify(lsArr));
-  // number of items in cart
-  cartItemsAmount();
-  // sum price of all products in cart
-  totalPrice();
-};
+//   // === price of item
+//   // calc new price
+//   const updatedPrice = lsItemPrice * lsItemAmount;
+//   // update price of item
+//   cartProductInfoPrice.textContent = updatedPrice.toFixed(2) + '$';
+//   // override price of item
+//   currentItem.increasedPrice = updatedPrice;
+//   // add to ls
+//   localStorage.setItem('shopping-cart', JSON.stringify(lsArr));
+//   // number of items in cart
+//   cartItemsAmount();
+//   // sum price of all products in cart
+//   totalPrice();
+// };
 
-// sum price of all products in cart
-export const totalPrice = function () {
-  const cartSumNumber = document.querySelector('.cart__sum-number');
-  const lsArr = getLS();
-  const sum = lsArr.reduce((acc, value) => {
-    return acc + +value.increasedPrice;
-  }, 0);
-  cartSumNumber.textContent = parseFloat(`${sum}`).toFixed(2) + '$';
-};
+// // sum price of all products in cart
+// export const totalPrice = function () {
+//   const cartSumNumber = document.querySelector('.cart__sum-number');
+//   const lsArr = getLS();
+//   const sum = lsArr.reduce((acc, value) => {
+//     return acc + +value.increasedPrice;
+//   }, 0);
+//   cartSumNumber.textContent = parseFloat(`${sum}`).toFixed(2) + '$';
+// };

@@ -1,11 +1,11 @@
-// import { getProductsList, takeProductsData, getLS, updateLS, productAmount, totalPrice, properBtnText } from './model.js';
 import * as model from './model.js';
+import { cartItemsAmount, productAmount, removeCartItem, totalPrice } from './modelShoppingCart.js';
 import { renderSaleInfo } from './views/renderSaleInfo.js';
 import { renderShoppingCart } from './views/renderShoppingCart.js';
 
 const cart = document.querySelector('.cart');
 const shopProducts = document.querySelector('.shop__products');
-const btnShoppingCartAmount = document.querySelector('.btn-shopping-cart-amount');
+// const btnShoppingCartAmount = document.querySelector('.btn-shopping-cart-amount');
 const cartWrapper = document.querySelector('.cart__wrapper');
 const input = document.querySelector('#inp__sort');
 
@@ -13,6 +13,7 @@ const input = document.querySelector('#inp__sort');
 const btnShoppingCart = document.querySelector('.btn-shopping-cart');
 const cartBtnClose = document.querySelector('.cart__btn-close');
 
+// display sale timer
 export const saleTimer = function () {
   const days = document.querySelector('.sale__days');
   const hours = document.querySelector('.sale__hours');
@@ -26,7 +27,8 @@ export const saleTimer = function () {
   const futureMonth = futureDate.getMonth();
   const futureDay = futureDate.getDate();
 
-  const deadline = new Date(futureYear, futureMonth, futureDay + 10, 23, 59, 59);
+  const deadline = new Date(futureYear, futureMonth, futureDay + 0, 22, 44, 59);
+  // const deadline = new Date(futureYear, futureMonth, futureDay + 10, 23, 59, 59);
   const deadlineDay = deadline.getDate();
   const deadlineHour = deadline.getHours();
   const deadlineMinutes = deadline.getMinutes();
@@ -57,12 +59,13 @@ export const saleTimer = function () {
     hours.innerHTML = `00`;
     minutes.innerHTML = `00`;
     seconds.innerHTML = `00`;
+    // update UI by removing sale info
     removeSaleInfo();
   }
 };
 
 const timer = setInterval(saleTimer, 1000);
-saleTimer();
+// saleTimer();
 
 // show cart
 const openCart = function () {
@@ -75,36 +78,36 @@ const closeCart = function () {
   cart.classList.toggle('hide');
 };
 
-// display number of items on shopping cart
-export const cartItemsAmount = function () {
-  const lsItems = model.getLS();
+// // display number of items on shopping cart
+// export const cartItemsAmount = function () {
+//   const lsItems = model.getLS();
 
-  const items = lsItems.reduce((acc, value) => {
-    return acc + value.amount;
-  }, 0);
-  btnShoppingCartAmount.textContent = items;
-};
+//   const items = lsItems.reduce((acc, value) => {
+//     return acc + value.amount;
+//   }, 0);
+//   btnShoppingCartAmount.textContent = items;
+// };
 
-// remove product from cart
-export const removeCartItem = function (e) {
-  const click = e.target;
-  const parent = click.closest('.cart__wrapper');
-  const target = click.closest('.cart__wrapper-item');
-  // id of deleted cart item
-  const id = parseFloat(target.dataset.id);
+// // remove product from cart
+// export const removeCartItem = function (e) {
+//   const click = e.target;
+//   const parent = click.closest('.cart__wrapper');
+//   const target = click.closest('.cart__wrapper-item');
+//   // id of deleted cart item
+//   const id = parseFloat(target.dataset.id);
 
-  if (!click.classList.contains('fa-trash')) return;
-  parent.removeChild(target);
+//   if (!click.classList.contains('fa-trash')) return;
+//   parent.removeChild(target);
 
-  // change shop product btn name
-  changeProductBtnText(id);
+//   // change shop product btn name
+//   changeProductBtnText(id);
 
-  model.updateLS(target);
-  // sum price of all products in cart
-  model.totalPrice();
-  // number of items in cart
-  cartItemsAmount();
-};
+//   model.updateLS(target);
+//   // sum price of all products in cart
+//   model.totalPrice();
+//   // number of items in cart
+//   cartItemsAmount();
+// };
 
 // change products btn text after removing item from cart
 export const changeProductBtnText = function (id) {
@@ -114,23 +117,23 @@ export const changeProductBtnText = function (id) {
   item.querySelector('.shop__products-btn').textContent = `Add to cart`;
 };
 
-// remove product from cart and localStorage after removing product from shop
-export const removeProductFromCart = function (click) {
-  const parentID = click.parentElement.dataset.id;
-  const lsArr = model.getLS();
+// // remove product from cart and localStorage after removing product from shop
+// export const removeProductFromCart = function (click) {
+//   const parentID = click.parentElement.dataset.id;
+//   const lsArr = model.getLS();
 
-  const lsItems = lsArr.filter((value) => value.id != parentID);
+//   const lsItems = lsArr.filter((value) => value.id != parentID);
 
-  lsArr.push(lsItems);
-  localStorage.setItem('shopping-cart', JSON.stringify(lsItems));
+//   lsArr.push(lsItems);
+//   localStorage.setItem('shopping-cart', JSON.stringify(lsItems));
 
-  // update number of items in shopping cart icon
-  cartItemsAmount();
-  // update shopping cart list
-  renderShoppingCart();
-  // sum price of all products in cart
-  model.totalPrice();
-};
+//   // update number of items in shopping cart icon
+//   cartItemsAmount();
+//   // update shopping cart list
+//   renderShoppingCart();
+//   // sum price of all products in cart
+//   model.totalPrice();
+// };
 
 // ====== new
 // deley function
@@ -157,7 +160,6 @@ const sort = function () {
   }
 };
 
-// === sale test
 export const activeSale = function () {
   const products = document.querySelectorAll('.shop__products-item');
 
@@ -188,18 +190,23 @@ const removeSaleInfo = function () {
       product.querySelector('.sale-price').classList.add('hidden');
     }
   }
+  model.state.saleCategory = ' ';
+  renderShoppingCart();
+  totalPrice();
 };
-// === sale test
 
 //
 const init = async function () {
   cartItemsAmount();
   // fetch products
   await model.getProductsList();
+  // activate the sale timer
+  saleTimer();
   // render shopping cart
   renderShoppingCart();
   // sum price of all products in cart
-  model.totalPrice();
+  // model.totalPrice();
+  totalPrice();
   //
   model.properBtnText();
   //
@@ -212,7 +219,5 @@ btnShoppingCart.addEventListener('click', openCart);
 cartBtnClose.addEventListener('click', closeCart);
 shopProducts.addEventListener('click', model.takeProductsData);
 cartWrapper.addEventListener('click', removeCartItem);
-cartWrapper.addEventListener('click', model.productAmount);
-// ====== new
+cartWrapper.addEventListener('click', productAmount);
 input.addEventListener('input', _debounce(sort));
-// ====== new
