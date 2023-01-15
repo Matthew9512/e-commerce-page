@@ -6,14 +6,16 @@ export const renderProducts = function () {
   for (const product of state.productList) {
     const html = `
       <div class="shop__products-item" data-id="${product.id}" data-category="${product.category}">
-     <!-- sale test 
-      <div class="sale__active">
-      <p class="sale__active-number">-50%</p>
-      </div>  -->
       <img src="${product.image}" alt="" class="shop__products-item-img" />
         <div class="shop__products-item-details">
           <p class="shop__products-title">${product.title}</p>
-          <p class="shop__products-price">${product.price}<span>$</span></p>
+          <div class="normal-price sale-info">
+            <p class="shop__products-price">${product.price}<span>$</span></p>
+          </div>
+          <div class="sale-price sale-info hidden">
+            <p class="shop__products-price price">${product.price}<span>$</span>
+            <p class="cut-price">${(product.price * (state.sale / 100)).toFixed(2)}</p><span>$</span></p>
+          </div>
           <p class="shop__products-description">${product.description}</p>
         </div>
         <button class="shop__products-btn">Add to cart</button>

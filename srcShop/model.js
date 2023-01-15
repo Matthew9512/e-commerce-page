@@ -5,6 +5,8 @@ import { renderShoppingCart } from './views/renderShoppingCart.js';
 // global data obj
 export const state = {
   productList: [],
+  saleCategory: 'lunch',
+  sale: 50,
 };
 
 // fetch product list
@@ -45,12 +47,12 @@ export const takeProductsData = function (e) {
   if (!click.classList.contains('shop__products-btn')) return;
 
   // find clicked product in arr of fetched products and return this items data
-  const productData = state.productList.find((value) => value.id === Number(productItem.dataset.id));
+  const productData = state.productList.find((value) => value.id === parseFloat(productItem.dataset.id));
 
   if (click.textContent === `Add to cart`) {
     click.textContent = `Remove from cart`;
     // add clicked product to ls
-    addItemLS(productData);
+    addItemLS(productData, productItem);
   } else {
     click.textContent = `Add to cart`;
     removeProductFromCart(click);
@@ -66,21 +68,40 @@ export const getLS = function () {
 };
 
 // add item to localStorage
-const addItemLS = function (productData) {
+const addItemLS = function (productData, productItem) {
   const lsItems = getLS();
 
-  // push clicked product data to obj
-  const lsObj = {
-    id: productData.id,
-    img: productData.image,
-    price: productData.price,
-    increasedPrice: productData.price,
-    amount: 1,
-    title: productData.title,
-  };
+  const saleInfo = productItem.querySelector('.sale-price');
 
-  lsItems.push(lsObj);
-  localStorage.setItem('shopping-cart', JSON.stringify(lsItems));
+  // send data to ls based on sale price
+  if (!saleInfo.classList.contains('hidden')) {
+    const price = saleInfo.querySelector('.cut-price').textContent;
+    const lsObj = {
+      category: productData.category,
+      id: productData.id,
+      img: productData.image,
+      price: price,
+      increasedPrice: price,
+      amount: 1,
+      title: productData.title,
+    };
+    lsItems.push(lsObj);
+    localStorage.setItem('shopping-cart', JSON.stringify(lsItems));
+
+    // send data to ls based on normal price
+  } else if (saleInfo.classList.contains('hidden')) {
+    const lsObj = {
+      category: productData.category,
+      id: productData.id,
+      img: productData.image,
+      price: productData.price,
+      increasedPrice: productData.price,
+      amount: 1,
+      title: productData.title,
+    };
+    lsItems.push(lsObj);
+    localStorage.setItem('shopping-cart', JSON.stringify(lsItems));
+  }
 
   // change btn text
   properBtnText();
@@ -209,7 +230,7 @@ export const totalPrice = function () {
   const cartSumNumber = document.querySelector('.cart__sum-number');
   const lsArr = getLS();
   const sum = lsArr.reduce((acc, value) => {
-    return acc + value.increasedPrice;
+    return acc + +value.increasedPrice;
   }, 0);
   cartSumNumber.textContent = parseFloat(`${sum}`).toFixed(2) + '$';
 };

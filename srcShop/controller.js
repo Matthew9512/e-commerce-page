@@ -108,7 +108,7 @@ export const removeCartItem = function (e) {
 
 // change products btn text after removing item from cart
 export const changeProductBtnText = function (id) {
-  const shopProductsItem = document.querySelectorAll('.shop__products-item');
+  const shopProductsItem = [...document.querySelectorAll('.shop__products-item')];
 
   const item = shopProductsItem.find((value) => value.dataset.id == id);
   item.querySelector('.shop__products-btn').textContent = `Add to cart`;
@@ -166,7 +166,11 @@ export const activeSale = function () {
   // add sale info based on data-category
   for (const product of products) {
     // sale for specific category name
-    if (product.dataset.category == 'shakes') product.insertAdjacentHTML('afterbegin', html);
+    if (product.dataset.category == model.state.saleCategory) {
+      product.insertAdjacentHTML('afterbegin', html);
+      product.querySelector('.normal-price').classList.add('hidden');
+      product.querySelector('.sale-price').classList.remove('hidden');
+    }
   }
 };
 
@@ -174,9 +178,15 @@ export const activeSale = function () {
 const removeSaleInfo = function () {
   const products = document.querySelectorAll('.shop__products-item');
 
+  const lsArr = model.getLS();
+
   for (const product of products) {
     const child = product.firstElementChild;
-    if (product.firstElementChild.classList.contains('sale__active')) product.removeChild(child);
+    if (product.firstElementChild.classList.contains('sale__active')) {
+      product.removeChild(child);
+      product.querySelector('.normal-price').classList.remove('hidden');
+      product.querySelector('.sale-price').classList.add('hidden');
+    }
   }
 };
 // === sale test

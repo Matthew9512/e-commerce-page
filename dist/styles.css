@@ -607,6 +607,7 @@ body {
 .shop__products-price {
   opacity: 0.7;
   font-style: italic;
+  display: inline;
 }
 .shop__products-btn {
   width: 100%;
@@ -626,4 +627,18 @@ body {
 }
 .sale__active-number {
   color: white;
+}
+
+.normal-price,
+.sale-price {
+  display: flex;
+}
+
+.price {
+  text-decoration: line-through;
+  margin-right: 1em;
+}
+
+.hidden {
+  display: none;
 }/*# sourceMappingURL=styles.css.map */
