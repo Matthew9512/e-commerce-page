@@ -1,20 +1,15 @@
 .shop {
-  // background-color: red;
-
   &__title {
     padding: 1rem;
   }
 
   &__products {
-    // display: grid;
-    // grid-template-columns: repeat(4, 1fr);
-    // place-items: center;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
     gap: 1em;
-    background-color: antiquewhite;
+    // background-color: antiquewhite;
     padding: 1em;
 
     &-item {
@@ -22,7 +17,6 @@
       width: 15em;
       //   height: 15em;
       border: 1px solid transparent;
-      // background-color: yellow;
 
       &:hover {
         border-color: black;

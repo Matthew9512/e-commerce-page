@@ -1,5 +1,6 @@
 import { getLS } from '../model.js';
-import { salePrice } from './renderSaleInfo.js';
+import { totalPrice } from '../modelShoppingCart.js';
+import { calcPrice } from './renderSaleInfo.js';
 
 export const renderShoppingCart = function () {
   const cartWrapper = document.querySelector('.cart__wrapper');
@@ -9,9 +10,8 @@ export const renderShoppingCart = function () {
   const lsItems = getLS();
 
   for (const item of lsItems) {
-    // DOMContentLoadedPrice
-    // <h5 class="cart__product-info-price">${item.increasedPrice}$</h5>
-    const price = salePrice(item);
+    //
+    const price = calcPrice(item, lsItems);
 
     const html = `
     <div class="cart__wrapper-item" data-id="${item.id}" data-category="${item.category}">
@@ -31,4 +31,7 @@ export const renderShoppingCart = function () {
   </div>`;
     cartWrapper.insertAdjacentHTML('afterbegin', html);
   }
+
+  // calc sum of all items in the cart
+  totalPrice();
 };

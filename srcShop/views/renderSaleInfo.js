@@ -8,13 +8,16 @@ export const renderSaleInfo = function () {
 };
 
 // display proper price in shopping cart
-export const salePrice = function (item) {
+export const calcPrice = function (item, lsItems) {
+  // if item HAS active sale
   if (item.category.includes(state.saleCategory)) {
-    // const price = (item.increasedPrice * (state.sale / 100)).toFixed(2);
-    const price = item.increasedPrice;
+    const price = item.price * item.amount;
     return price;
+    // if item DOES NOT have active sale
   } else if (!item.category.includes(state.saleCategory)) {
     const price = item.beforeSale * item.amount;
+    item.price = item.beforeSale;
+    localStorage.setItem('shopping-cart', JSON.stringify(lsItems));
     return price;
   }
 };
