@@ -1,6 +1,7 @@
 .shop {
   &__title {
-    padding: 1rem;
+    padding-block: 1em;
+    padding-left: 1.5em;
   }
 
   &__products {
@@ -70,6 +71,7 @@
     color: white;
   }
 }
+
 .normal-price,
 .sale-price {
   display: flex;
@@ -77,6 +79,18 @@
 .price {
   text-decoration: line-through;
   margin-right: 1em;
+}
+.sort {
+  padding-left: 2em;
+  padding-bottom: 1em;
+}
+#inp__sort {
+  width: 16.5em;
+
+  &::placeholder {
+    opacity: 0.7;
+    font-style: italic;
+  }
 }
 
 .hidden {

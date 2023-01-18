@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/dist/styles.css" />
     <script src="https://kit.fontawesome.com/da392c22d2.js" crossorigin="anonymous"></script>
-    <script type="module" src="/src/controller.js"></script>
+    <script type="module" src="/srcShop/controller.js"></script>
     <title>Shop page</title>
   </head>
   <body>
@@ -24,10 +24,10 @@
             <a href="#start" class="navbar__link"><button class="navbar__btn">Home</button></a>
           </li>
           <li>
-            <a href="shop.html" class="navbar__link"><button class="navbar__btn">Shop</button></a>
+            <a href="#shop" class="navbar__link"><button class="navbar__btn">Shop</button></a>
           </li>
           <li>
-            <a href="meal/meal.html" class="navbar__link"><button class="navbar__btn">Contact</button></a>
+            <a href="#footer" class="navbar__link"><button class="navbar__btn">Contact</button></a>
           </li>
           <li>
             <button class="navbar__btn btn-shopping-cart"><i class="fa-solid fa-cart-shopping"></i></button>
@@ -96,7 +96,7 @@
       </section>
       <!-- hero shop -->
       <section class="hero__shop">
-        <h2 class="hero__shop-title">Lorem ipsum dolor sit.</h2>
+        <!-- <h2 class="hero__shop-title">Lorem ipsum dolor sit.</h2>
         <article class="hero__shop-wrapper">
           <div class="hero__shop-person">
             <button class="hero__shop-person-men">Lorem, ipsum.</button>
@@ -107,8 +107,9 @@
           <div class="hero__shop-person">
             <button class="hero__shop-person-accessories">Lorem, ipsum.</button>
           </div>
-        </article>
-        <h3 class="hero__shop-detalis-title">What do you get?</h3>
+        </article> -->
+        <!--  -->
+        <h2 class="hero__shop-detalis-title">What do you get?</h2>
         <article class="hero__shop-details">
           <div class="hero__shop-details-info shipping">
             <i class="fa-solid fa-truck-fast"></i>
@@ -140,8 +141,20 @@
           </div>
         </article>
       </section>
+      <!--  -->
+      <!-- shop -->
+       <!-- shop section -->
+       <section class="shop" id="shop">
+        <h2 class="shop__title">best products</h2>
+        <div class="sort">
+          <input type="text" id="inp__sort" placeholder="e.g. lunch" />
+        </div>
+        <article class="shop__products">
+          <!-- item -->
+        </article>
+      </section>
       <!-- footer -->
-      <footer class="footer">
+      <footer class="footer" id="footer">
         <p class="footer__text">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Exercitationem, et deserunt. Officiis, nobis? Alias obcaecati aliquid
           aspernatur quam perspiciatis! Omnis.
@@ -151,7 +164,7 @@
         </div>
       </footer>
       <!-- shoppingCart -->
-      <article class="cart hide">
+      <article class="cart ">
         <button class="cart__btn-close"><i class="fa-solid fa-xmark"></i></button>
         <h3 class="cart-title">Your basket</h3>
         <!-- cart-container -->
@@ -160,7 +173,7 @@
         </div>
         <!-- sum of all products -->
         <div class="cart__sum">
-          <p class="cart__sum-number">Total cost: 1234$</p>
+          <p class="cart__sum-number"></p>
           <button class="btn-clear">Clear basket</button>
         </div>
       </article>

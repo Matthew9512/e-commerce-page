@@ -24,7 +24,6 @@ export const getProductsList = async function () {
   const respond = await fetch('../data.json');
   const data = await respond.json();
   destructuring(data);
-  console.log(data);
 };
 // === json
 
@@ -58,7 +57,6 @@ export const takeProductsData = function (e) {
     click.textContent = `Add to cart`;
     removeProductFromCart(click);
   }
-  // change btn text after click
 };
 
 // ===== localStorage ===== //
@@ -69,42 +67,21 @@ export const getLS = function () {
 };
 
 // add item to localStorage
-const addItemLS = function (productData, productItem) {
+const addItemLS = function (productData) {
   const lsItems = getLS();
 
-  const saleInfo = productItem.querySelector('.sale-price');
-
-  // send data to ls based on sale price
-  if (!saleInfo.classList.contains('hidden')) {
-    // const price = saleInfo.querySelector('.cut-price').textContent;
-    const lsObj = {
-      category: productData.category,
-      id: productData.id,
-      img: productData.image,
-      price: (productData.price * (state.sale / 100)).toFixed(2),
-      // increasedPrice: (productData.price * (state.sale / 100)).toFixed(2),
-      beforeSale: productData.price,
-      amount: 1,
-      title: productData.title,
-    };
-    lsItems.push(lsObj);
-    localStorage.setItem('shopping-cart', JSON.stringify(lsItems));
-
-    // send data to ls based on normal price
-  } else if (saleInfo.classList.contains('hidden')) {
-    const lsObj = {
-      category: productData.category,
-      id: productData.id,
-      img: productData.image,
-      price: productData.price,
-      // increasedPrice: productData.price,
-      beforeSale: productData.price,
-      amount: 1,
-      title: productData.title,
-    };
-    lsItems.push(lsObj);
-    localStorage.setItem('shopping-cart', JSON.stringify(lsItems));
-  }
+  const lsObj = {
+    category: productData.category,
+    id: productData.id,
+    img: productData.image,
+    price: productData.price,
+    beforeSale: productData.price,
+    salePrice: productData.price * (state.sale / 100).toFixed(2),
+    amount: 1,
+    title: productData.title,
+  };
+  lsItems.push(lsObj);
+  localStorage.setItem('shopping-cart', JSON.stringify(lsItems));
 
   // change btn text
   properBtnText();
@@ -123,6 +100,14 @@ export const updateLS = function (target) {
 
   // add to ls
   localStorage.setItem('shopping-cart', JSON.stringify(update));
+};
+
+// clear cart
+export const clearCart = function () {
+  localStorage.removeItem('shopping-cart');
+  renderShoppingCart();
+  cartItemsAmount();
+  properBtnText();
 };
 
 // display proper btn text

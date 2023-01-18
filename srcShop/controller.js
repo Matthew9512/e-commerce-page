@@ -9,10 +9,16 @@ const cartWrapper = document.querySelector('.cart__wrapper');
 const input = document.querySelector('#inp__sort');
 const header = document.querySelector('.header');
 const sale = document.querySelector('.sale');
+const carouselItems = document.querySelectorAll('.carousel__item');
+const carouselBtnsLeft = document.querySelector('.carousel__btns-left');
+const carouselBtnsRight = document.querySelector('.carousel__btns-right');
 
 // btns
 const btnShoppingCart = document.querySelector('.btn-shopping-cart');
 const cartBtnClose = document.querySelector('.cart__btn-close');
+const btnClear = document.querySelector('.btn-clear');
+
+let currentItem = 0;
 
 // display sale timer
 export const saleTimer = function () {
@@ -27,8 +33,7 @@ export const saleTimer = function () {
   const futureMonth = futureDate.getMonth();
   const futureDay = futureDate.getDate();
 
-  const deadline = new Date(futureYear, futureMonth, futureDay + 0, 22, 52, 59);
-  // const deadline = new Date(futureYear, futureMonth, futureDay + 10, 23, 59, 59);
+  const deadline = new Date(futureYear, futureMonth, futureDay + 10, 23, 59, 59);
   const deadlineDay = deadline.getDate();
   const deadlineHour = deadline.getHours();
   const deadlineMinutes = deadline.getMinutes();
@@ -62,6 +67,39 @@ export const saleTimer = function () {
 };
 
 const timer = setInterval(saleTimer, 1000);
+
+// lenght of carousel items
+const carouselItemsLength = carouselItems.length;
+
+// move carousel
+const carousel = (currentItem) => {
+  carouselItems.forEach((item, index) => {
+    item.style.transform = `translateX(${100 * (index - currentItem)}%)`;
+  });
+};
+
+// move carousel to the right side
+const moveRight = () => {
+  if (currentItem === carouselItemsLength - 1) {
+    currentItem++;
+    currentItem = 0;
+  } else currentItem++;
+  carousel(currentItem);
+};
+
+// move carousel to the left side
+const moveLeft = () => {
+  if (currentItem === 0) {
+    currentItem--;
+    currentItem = carouselItemsLength - 1;
+  } else currentItem--;
+  carousel(currentItem);
+};
+
+// automatically move carousel
+setInterval(() => {
+  moveRight();
+}, 3000);
 
 // show cart
 const openCart = function () {
@@ -117,6 +155,7 @@ export const activeSale = function () {
 // remove sale info after sale timer ends
 const removeSaleInfo = function () {
   const products = document.querySelectorAll('.shop__products-item');
+  const lsArr = model.getLS();
 
   for (const product of products) {
     const child = product.firstElementChild;
@@ -126,6 +165,14 @@ const removeSaleInfo = function () {
       product.querySelector('.sale-price').classList.add('hidden');
     }
   }
+  for (const item of lsArr) {
+    if (item.category.includes(model.state.saleCategory)) {
+      const updatedPrice = parseFloat(item.price / (model.state.sale / 100));
+      item.price = updatedPrice;
+      localStorage.setItem('shopping-cart', JSON.stringify(lsArr));
+    }
+  }
+
   model.state.saleCategory = ' ';
   renderShoppingCart();
 };
@@ -146,13 +193,14 @@ const init = async function () {
 init();
 
 // addEventListeners
+carouselBtnsLeft.addEventListener('click', moveLeft);
+carouselBtnsRight.addEventListener('click', moveRight);
 btnShoppingCart.addEventListener('click', openCart);
 cartBtnClose.addEventListener('click', closeCart);
 shopProducts.addEventListener('click', model.takeProductsData);
 cartWrapper.addEventListener('click', (e) => {
   if (e.target.classList.contains('fa-trash')) removeCartItem(e);
-  else productAmount(e);
+  else if (e.target.classList.contains('fas')) productAmount(e);
 });
-// cartWrapper.addEventListener('click', removeCartItem);
-// cartWrapper.addEventListener('click', productAmount);
+btnClear.addEventListener('click', model.clearCart);
 input.addEventListener('input', _debounce(sort));

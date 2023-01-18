@@ -6,91 +6,29 @@ const btnShoppingCartAmount = document.querySelector('.btn-shopping-cart-amount'
 // update amount of cart items
 export const productAmount = function (e) {
   const click = e.target;
-  console.log(click);
   const parent = click.closest('.cart__wrapper-item');
-  let itemAmount = parent.querySelector('.item-amount');
+  // amount type === number
+  let clickAmount = parent.querySelector('.item-amount');
   let cartProductInfoPrice = parent.querySelector('.cart__product-info-price');
+  let itemAmount = clickAmount.textContent;
 
   const lsArr = getLS();
   const currentItem = lsArr.find((value) => value.id === parseFloat(parent.dataset.id));
+  let itemPrice = currentItem.price;
 
-  // current items data
-  const lsItemPrice = currentItem.price;
-  let lsItemAmount = currentItem.amount;
-
-  // increase amount of product
-  if (click.classList.contains('fa-chevron-up')) {
-    lsItemAmount++;
-    // increaseCartItemValue(itemAmount, cartProductInfoPrice, currentItem, lsArr);
-  }
-
-  // decrease amount of product
+  if (click.classList.contains('fa-chevron-up')) itemAmount++;
   if (click.classList.contains('fa-chevron-down')) {
     // stop if amount current item = 1(string)
-    if (itemAmount.textContent === '1') return;
-    lsItemAmount--;
-    // const currentItem = lsArr.find((value) => value.id === parseFloat(parent.dataset.id));
-    // decreaseCartItemValue(itemAmount, cartProductInfoPrice, currentItem, lsArr);
+    if (itemAmount === '1') return;
+    else itemAmount--;
   }
-  // update amount of items
-  itemAmount.textContent = lsItemAmount;
-  // override amount of items
-  currentItem.amount = lsItemAmount;
 
-  // calc new price
-  const updatedPrice = lsItemPrice * lsItemAmount;
-  // update price of item
-  cartProductInfoPrice.textContent = updatedPrice.toFixed(2) + '$';
+  currentItem.amount = itemAmount;
+  clickAmount.textContent = itemAmount;
+  cartProductInfoPrice.textContent = `${(itemPrice * itemAmount).toFixed(2)}$`;
+
   localStorage.setItem('shopping-cart', JSON.stringify(lsArr));
-  // number of items in cart
-  cartItemsAmount();
-  // sum price of all products in cart
-  totalPrice();
-};
 
-// increase and update cart items values
-const increaseCartItemValue = function (itemAmount, cartProductInfoPrice, currentItem, lsArr) {
-  // // current items data
-  // const lsItemPrice = currentItem.price;
-  // let lsItemAmount = currentItem.amount;
-  // === amount of items
-  // increase amount of items
-  // lsItemAmount++;
-  // // update amount of items
-  // itemAmount.textContent = lsItemAmount;
-  // // override amount of items
-  // currentItem.amount = lsItemAmount;
-  // // === price of item
-  // // calc new price
-  // const updatedPrice = lsItemPrice * lsItemAmount;
-  // // update price of item
-  // cartProductInfoPrice.textContent = updatedPrice.toFixed(2) + '$';
-  // localStorage.setItem('shopping-cart', JSON.stringify(lsArr));
-  // // number of items in cart
-  // cartItemsAmount();
-  // // sum price of all products in cart
-  // totalPrice();
-};
-
-const decreaseCartItemValue = function (itemAmount, cartProductInfoPrice, currentItem, lsArr) {
-  // current items data
-  const lsItemPrice = currentItem.price;
-  let lsItemAmount = currentItem.amount;
-
-  // === amount of items
-  // increase amount of items
-  lsItemAmount--;
-  // update amount of items
-  itemAmount.textContent = lsItemAmount;
-  // override amount of items
-  currentItem.amount = lsItemAmount;
-
-  // === price of item
-  // calc new price
-  const updatedPrice = lsItemPrice * lsItemAmount;
-  // update price of item
-  cartProductInfoPrice.textContent = updatedPrice.toFixed(2) + '$';
-  localStorage.setItem('shopping-cart', JSON.stringify(lsArr));
   // number of items in cart
   cartItemsAmount();
   // sum price of all products in cart
@@ -127,7 +65,6 @@ export const removeCartItem = function (e) {
   if (!click.classList.contains('fa-trash')) return;
   parent.removeChild(target);
 
-  // changeProductBtnText(id);
   updateLS(target);
   // change shop product btn name
   properBtnText();
