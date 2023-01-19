@@ -12,6 +12,7 @@ const sale = document.querySelector('.sale');
 const carouselItems = document.querySelectorAll('.carousel__item');
 const carouselBtnsLeft = document.querySelector('.carousel__btns-left');
 const carouselBtnsRight = document.querySelector('.carousel__btns-right');
+const navbar = document.querySelector('.navbar');
 
 // btns
 const btnShoppingCart = document.querySelector('.btn-shopping-cart');
@@ -19,6 +20,7 @@ const cartBtnClose = document.querySelector('.cart__btn-close');
 const btnClear = document.querySelector('.btn-clear');
 
 let currentItem = 0;
+const navbarHeight = navbar.getBoundingClientRect().height;
 
 // display sale timer
 export const saleTimer = function () {
@@ -176,6 +178,21 @@ const removeSaleInfo = function () {
   model.state.saleCategory = ' ';
   renderShoppingCart();
 };
+
+// intersectionobserver function
+const stickyNavbar = function (entries) {
+  for (const entry of entries) {
+    if (!entry.isIntersecting) navbar.classList.add('sticky');
+    else navbar.classList.remove('sticky');
+  }
+};
+// intersectionobserver
+const observer = new IntersectionObserver(stickyNavbar, {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${navbarHeight}px`,
+});
+observer.observe(header);
 
 const init = async function () {
   cartItemsAmount();

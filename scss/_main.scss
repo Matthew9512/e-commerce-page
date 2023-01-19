@@ -123,6 +123,9 @@ $breakpoint-md: 768px;
 $breakpoint-lg: 900px;
 $breakpoint-xl: 1200px;
 
+html {
+  scroll-behavior: smooth;
+}
 body {
   background-color: var(--backgroundMainWhite);
   font-family: 'DM Sans', sans-serif;
@@ -139,6 +142,9 @@ body {
   padding-bottom: 10em; // for footer
 }
 
+.btn-shopping-cart {
+  position: relative;
+}
 .btn-shopping-cart-amount {
   position: absolute;
   top: 0.4em;
@@ -149,6 +155,11 @@ body {
   border-radius: 50%;
   text-align: center;
   color: var(--white);
+
+  @media (max-width: 700px) {
+    top: 12.8em;
+    right: 12.5em;
+  }
 }
 
 .hidden {
@@ -156,4 +167,10 @@ body {
 }
 .sorted {
   display: none;
+}
+.sticky {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 9;
 }

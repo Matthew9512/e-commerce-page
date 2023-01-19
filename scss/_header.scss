@@ -44,7 +44,8 @@ $breakpoint-xl: 1200px;
     width: 50%;
 
     @media (max-width: $breakpoint-lg) {
-      width: 80%;
+      width: 90%;
+      text-align: center;
     }
   }
 }

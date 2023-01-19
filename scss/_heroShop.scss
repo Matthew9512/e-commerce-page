@@ -2,49 +2,6 @@
   margin-block: 2em;
   padding-inline: 3em;
 
-  &-title {
-    padding-top: 1em;
-  }
-
-  &-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-    padding: 2em;
-    gap: 1em;
-  }
-
-  &-person {
-    background: url('/images/pexels-azraq-al-rezoan-7518184.jpg');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 20em;
-    height: 25em;
-    position: relative;
-
-    &-men,
-    &-women,
-    &-accessories {
-      background-color: transparent;
-      outline: none;
-      border: 1px solid black;
-      border-radius: 1em 0.5em;
-      padding: 0.4em 0.6em;
-      position: absolute;
-      top: 2em;
-      left: 2em;
-    }
-
-    &-men,
-    &-women,
-    &-accessories:hover {
-      cursor: pointer;
-    }
-  }
-
-  //   details
   &-details {
     display: flex;
     justify-content: center;
