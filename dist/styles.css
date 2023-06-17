@@ -74,8 +74,8 @@ button {
     scroll-behavior: auto;
   }
   *,
-*::before,
-*::after {
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -632,6 +632,8 @@ body {
 .sort {
   padding-left: 2em;
   padding-bottom: 1em;
+  display: flex;
+  flex-direction: column;
 }
 
 #inp__sort {

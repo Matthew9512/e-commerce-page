@@ -1,0 +1,25 @@
+{
+   "name": "git-shop-page",
+   "version": "1.0.0",
+   "description": "",
+   "source": "index.html",
+   "scripts": {
+      "start": "parcel",
+      "build": "parcel build",
+      "test": "echo \"Error: no test specified\" && exit 1"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/Matthew9512/e-commerce-page.git"
+   },
+   "keywords": [],
+   "author": "",
+   "license": "ISC",
+   "bugs": {
+      "url": "https://github.com/Matthew9512/e-commerce-page/issues"
+   },
+   "homepage": "https://github.com/Matthew9512/e-commerce-page#readme",
+   "devDependencies": {
+      "parcel": "^2.9.2"
+   }
+}
