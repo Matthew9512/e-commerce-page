@@ -5,6 +5,8 @@ import { renderShoppingCart } from './views/renderShoppingCart.js';
 
 const cart = document.querySelector('.cart');
 const shopProducts = document.querySelector('.shop__products');
+const noProductsMsg = document.querySelector('.no-products-msg');
+
 const cartWrapper = document.querySelector('.cart__wrapper');
 const input = document.querySelector('#inp__sort');
 const header = document.querySelector('.header');
@@ -29,37 +31,30 @@ export const saleTimer = function () {
    const minutes = document.querySelector('.sale__minutes');
    const seconds = document.querySelector('.sale__seconds');
 
-   // getting dealine time
-   const futureDate = new Date();
-   const futureYear = futureDate.getFullYear();
-   const futureMonth = futureDate.getMonth();
-   const futureDay = futureDate.getDate();
-
-   const deadline = new Date(futureYear, futureMonth, futureDay + 10, 23, 59, 59);
-   const deadlineDay = deadline.getDate();
-   const deadlineHour = deadline.getHours();
-   const deadlineMinutes = deadline.getMinutes();
-   const deadlineSeconds = deadline.getSeconds();
-
-   // getting actual time
    const actualDate = new Date();
-   const actualDay = actualDate.getDate();
-   const actualHour = actualDate.getHours();
-   const actualMinutes = actualDate.getMinutes();
-   const actualSeconds = actualDate.getSeconds();
 
-   // calculating how much time left till the end
-   const finalDay = deadlineDay - actualDay;
-   const finalHour = deadlineHour - actualHour;
-   const finalMinutes = deadlineMinutes - actualMinutes;
-   const finalSeconds = deadlineSeconds - actualSeconds;
+   let futureYear = actualDate.getFullYear();
+   let futureMonth = actualDate.getMonth();
+   let futureDay = actualDate.getDate();
 
-   finalDay < 10 ? (days.innerHTML = `0${finalDay}days,`) : (days.innerHTML = `${finalDay}days,`);
-   finalHour < 10 ? (hours.innerHTML = `0${finalHour}h`) : (hours.innerHTML = `${finalHour}h`);
-   finalMinutes < 10 ? (minutes.innerHTML = `0${finalMinutes}m`) : (minutes.innerHTML = `${finalMinutes}m`);
-   finalSeconds < 10 ? (seconds.innerHTML = `0${finalSeconds}s`) : (seconds.innerHTML = `${finalSeconds}s`);
+   const futureDate = new Date(futureYear, futureMonth, futureDay + 10, 23, 59, 59);
 
-   if (actualDate > deadline) {
+   const timeDifference = futureDate.getTime() - actualDate.getTime();
+   let secondsDiff = Math.floor(timeDifference / 1000);
+   let minutesDiff = Math.floor(secondsDiff / 60);
+   let hoursDiff = Math.floor(minutesDiff / 60);
+   let daysDiff = Math.floor(hoursDiff / 24);
+
+   secondsDiff %= 60;
+   minutesDiff %= 60;
+   hoursDiff %= 24;
+
+   days.innerHTML = `${daysDiff}days`;
+   hours.innerHTML = `${hoursDiff}h`;
+   minutes.innerHTML = `${minutesDiff}m`;
+   seconds.innerHTML = `${secondsDiff}s`;
+
+   if (timeDifference <= 0) {
       clearInterval(timer);
       // remove sale timer
       header.removeChild(sale);
@@ -127,6 +122,7 @@ export const _debounce = function (fn, deley = 300) {
 
 // search shop products
 const sort = function () {
+   noProductsMsg.classList.add('hidden');
    const inputValue = input.value;
    const products = document.querySelectorAll('.shop__products-item');
 
@@ -135,6 +131,9 @@ const sort = function () {
       if (title.includes(inputValue)) product.classList.remove('sorted');
       else product.classList.add('sorted');
    }
+
+   const test = [...products].every((value) => value.classList.contains('sorted'));
+   if (test) noProductsMsg.classList.remove('hidden');
 };
 
 // update shop products with sale info

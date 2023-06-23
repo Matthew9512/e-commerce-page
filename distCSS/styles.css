@@ -335,6 +335,11 @@ body {
   overflow: hidden;
   margin-bottom: 4em;
 }
+@media (max-width: 900px) {
+  .carousel {
+    height: 40vh;
+  }
+}
 .carousel__btns {
   position: absolute;
   bottom: 0;
@@ -358,6 +363,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  object-fit: cover;
   width: 100%;
   height: 100%;
   padding: 1em 3em;
@@ -573,6 +579,7 @@ body {
   align-items: center;
   gap: 1em;
   padding: 1em;
+  min-height: 12em;
 }
 .shop__products-item {
   position: relative;
