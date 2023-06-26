@@ -1,6 +1,6 @@
-# E-commerce Page
+<center># E-commerce Page</center>
 
-js-e-commerce.netlify.app/
+<center>https://js-e-commerce.netlify.app/(https://js-e-commerce.netlify.app/)</center>
 
 ![js-e-commerce](https://github.com/Matthew9512/e-commerce-page/assets/108298198/1aa2d31d-1872-4f67-88c8-7f8fd107bee6)
 
