@@ -1,26 +1,33 @@
-E-commerce Page
-This is an e-commerce website built using vanilla JavaScript and Sass. The project includes active sale functionality, allowing users to search for products, add them to a shopping cart, and remove items from the cart.
+# E-commerce Page
 
-Features
-Browse a collection of products
-Search for specific products by name or category
-View product details including name, price, and description
-Add products to a shopping cart
-Remove products from the shopping cart
-Calculate and display the total cost of items in the cart
-Technologies Used
-HTML5: Markup language used for structuring the website
-CSS3: Cascading Style Sheets used for styling the website
-Sass: CSS preprocessor used for more efficient and maintainable styling
-JavaScript: Programming language used for the website's interactivity and functionality
-Getting Started
+![js-fitness-life](https://github.com/Matthew9512/e-commerce-page/assets/108298198/7ab43b6f-4dcb-4cb7-a953-392f3425176b)
+
+This is an e-commerce website built using vanilla JavaScript and Sass. Project includes active sale functionality, allowing users to search for products, add them to a shopping cart, and remove items from the cart.
+
+## Features
+
+- Browse a collection of products
+- Search for specific products by name or category
+- View product details including name, price, and description
+- Add products to a shopping cart
+- Remove products from the shopping cart
+- Calculate and display the total cost of items in the cart
+
+## Technologies Used
+
+- HTML5: Markup language used for structuring the website
+- CSS3: Cascading Style Sheets used for styling the website
+- Sass: CSS preprocessor used for more efficient and maintainable styling
+- JavaScript: Programming language used for the website's interactivity and functionality
+
+## Getting Started
+
 To get a local copy of the project up and running, follow these steps:
 
-Clone the repository:
+1. Clone the repository:
 
-bash
-Copy code
-git clone https://github.com/Matthew9512/e-commerce-page.git
+   ```bash
+   git clone https://github.com/Matthew9512/e-commerce-page.git
 Navigate to the project directory:
 
 bash
@@ -51,3 +58,4 @@ This project is licensed under the MIT License.
 
 Acknowledgments
 The project is inspired by various e-commerce websites and serves as a demonstration of building a functional e-commerce page using vanilla JavaScript and Sass.
+Feel free to update the README.md with more specific instructions or additional sections based on your project's requirements.
