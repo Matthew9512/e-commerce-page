@@ -1,14 +1,16 @@
 # E-commerce Page
 
+js-e-commerce.netlify.app/
+
 ![js-e-commerce](https://github.com/Matthew9512/e-commerce-page/assets/108298198/1aa2d31d-1872-4f67-88c8-7f8fd107bee6)
 
-
-This is an e-commerce website built using vanilla JavaScript and Sass. Project includes active sale functionality, allowing users to search for products, add them to a shopping cart, and remove items from the cart.
+E-commerce website built using vanilla JavaScript and Sass. Project includes active sale functionality, allowing users to search for products, add them to a shopping cart, and remove items from the cart.
 
 ## Features
 
 - Browse a collection of products
 - Search for specific products by name or category
+- Active sale functionality for products price 
 - View product details including name, price, and description
 - Add products to a shopping cart
 - Remove products from the shopping cart
