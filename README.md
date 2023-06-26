@@ -1,6 +1,7 @@
 # E-commerce Page
 
-![js-fitness-life](https://github.com/Matthew9512/e-commerce-page/assets/108298198/7ab43b6f-4dcb-4cb7-a953-392f3425176b)
+![js-e-commerce](https://github.com/Matthew9512/e-commerce-page/assets/108298198/1aa2d31d-1872-4f67-88c8-7f8fd107bee6)
+
 
 This is an e-commerce website built using vanilla JavaScript and Sass. Project includes active sale functionality, allowing users to search for products, add them to a shopping cart, and remove items from the cart.
 
